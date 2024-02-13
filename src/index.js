@@ -1,15 +1,29 @@
 // En este archivo definirás tus rutas e importarás los componentes que vas a renderizar.
 
-/*
-import Example from './views/Example.js';
+import { onURLChange, setRootEl, setRoutes } from './router.js';
+import Home from './views/Home.js';
+import Error from './../views/Error.js';
 
-Ejemplo de definición de rutas:
+
+//Ejemplo de definición de rutas:
 
 const routes = {
-    "/": Example,
-    ...
+    "/": Home,
+    "/error": Error,
+    
 }
-*/
+
+
+const viewContainer = document.getElementById('root')
+//viewContainer.appendChild(Home())
+setRoutes(routes);
+setRootEl(viewContainer);
+
+document.addEventListener("DOMContentLoaded", (event) =>{
+    //console.log("DOM fully loaded and parsed");
+    onURLChange(event.target.location.pathname)
+})
+
 
 /*
 TODO:
