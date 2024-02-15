@@ -1,29 +1,33 @@
 // En este archivo definirás tus rutas e importarás los componentes que vas a renderizar.
 
-import { onURLChange, setRootEl, setRoutes } from './router.js';
-import Home from './views/Home.js';
-import Error from './../views/Error.js';
-
+import { onURLChange, setRootEl, setRoutes } from "./router.js";
+import Home from "./views/Home.js";
+import Error from "./../views/Error.js";
+import ChatGrupal from "./views/ChatGrupal.js";
+import CardsInfo from "./views/CardsInfo.js";
+import ApiKey from "./views/ApiKey.js";
+import ChatIndividual from "./views/ChatIndividual.js";
 
 //Ejemplo de definición de rutas:
 
 const routes = {
-    "/": Home,
-    "/error": Error,
-    
-}
+  "/": Home,
+  "/error": Error,
+  "/ChatGrupal": ChatGrupal,
+  "/CardsInfo": CardsInfo,
+  "/ApiKey": ApiKey,
+  "/ChatIndividual": ChatIndividual,
+};
 
-
-const viewContainer = document.getElementById('root')
+const viewContainer = document.getElementById("root");
 //viewContainer.appendChild(Home())
 setRoutes(routes);
 setRootEl(viewContainer);
 
-document.addEventListener("DOMContentLoaded", (event) =>{
-    //console.log("DOM fully loaded and parsed");
-    onURLChange(event.target.location.pathname)
-})
-
+document.addEventListener("DOMContentLoaded", (event) => {
+  //console.log("DOM fully loaded and parsed");
+  onURLChange(event.target.location.pathname);
+});
 
 /*
 TODO:

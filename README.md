@@ -7,10 +7,11 @@
 * [3. Consideraciones generales](#3-consideraciones-generales)
 * [4. Funcionalidades](#4-funcionalidades)
 * [5. Consideraciones técnicas](#5-consideraciones-técnicas)
-* [6. Criterios de aceptación mínimos del proyecto](#6-criterios-de-aceptación-mínimos-del-proyecto)
-* [7. Objetivos de aprendizaje](#7-objetivos-de-aprendizaje)
-* [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
-* [9. Consideraciones para pedir tu Project Feedback](#9-consideraciones-para-pedir-tu-project-feedback)
+* [6. Hitos](#6-hitos)
+* [7. Criterios de aceptación mínimos del proyecto](#7-criterios-de-aceptación-mínimos-del-proyecto)
+* [8. Objetivos de aprendizaje](#8-objetivos-de-aprendizaje)
+* [9. Pistas, tips y lecturas complementarias](#9-pistas-tips-y-lecturas-complementarias)
+* [10. Consideraciones para pedir tu Project Feedback](#10-consideraciones-para-pedir-tu-project-feedback)
 
 ***
 
@@ -133,12 +134,12 @@ Mis contribuciones más destacadas se relacionan con el trabajo junto a Charles 
 en el diseño de la Máquina Analítica. Además, desarrollé el primer algoritmo destinado
 a ser procesado por una máquina, lo que me convierte en la primera programadora de la historia.
 ¿Hay algo más en particular que te gustaría saber?"
- 
+
 Usuaria: "¡Eso es fascinante! ¿Qué desafíos enfrentaste en ese tiempo?"
 
 Ada Lovelace (AI de OpenAI): "En ese tiempo, enfrenté varios desafíos, uno de los
 principales fue la limitación de recursos y la falta de reconocimiento del potencial
-de la Máquina Analítica. También tuve que superar las restricciones sociales de 
+de la Máquina Analítica. También tuve que superar las restricciones sociales de
 la época, ya que las mujeres tenían un acceso limitado a la educación en
 matemáticas y ciencias. Sin embargo, mi pasión por la matemática y la visión
 de lo que estas máquinas podrían lograr me impulsaron a seguir adelante."
@@ -172,7 +173,7 @@ de ejemplo, cuyo principal objetivo es mostrarte cómo se vería la
 funcionalidad de chat en tu aplicación, más no tomes el diseño como
 referencia para tu proyecto, siente libre de hacer volar tu imaginación
 diseñando tu propia interfaz.
-  
+
 ## 5. Consideraciones técnicas
 
 La lógica del proyecto debe estar implementada completamente en JavaScript
@@ -186,7 +187,7 @@ La siguiente es una estructura de archivos que recomendamos:
 ```text
 .
 ├── src
-|  ├── components 
+|  ├── components
 |  ├── data
 |  |  └── dataset.js
 |  ├── lib
@@ -263,7 +264,27 @@ necesites para tu aplicación.
 Esta carpeta contiene los tests de tus funciones y componentes. Por ejemplo
 los tests de dataFunctions deben estar aquí.
 
-## 6. Criterios de aceptación mínimos del proyecto
+## 6. Hitos
+
+Para resolver un problema,
+es importante comprenderlo en profundidad.
+Una forma de hacerlo es descomponerlo en problemas más pequeños.
+Esto nos ayudará a identificar las causas del problema y
+a desarrollar soluciones más efectivas.
+
+En este proyecto, te sugerimos que trabajes por hitos.
+Esto te permitirá enfocarte en un problema a la vez y
+hacer un seguimiento de tu progreso.
+A continuación, te presentamos un cronograma de hitos que
+te puede ayudar a organizar tu trabajo.
+
+* [Hito 1](./docs/01-milestone.md)
+* [Hito 2](./docs/02-milestone.md)
+* [Hito 3](./docs/03-milestone.md)
+* [Hito 4](./docs/04-milestone.md)
+* [Hito 5](./docs/05-milestone.md)
+
+## 7. Criterios de aceptación mínimos del proyecto
 
 Además de las funcionalidades que definimos en la sección de
 [Funcionalidades](#4-funcionalidades), tu proyecto debe cumplir con los
@@ -347,7 +368,7 @@ Tus _pruebas unitarias_ deben dar una cobertura del 70% de _statements_
 (_ramas_) del archivo `src/dataFunctions.js` que contenga tus funciones y
 está detallado en la sección de [Consideraciones técnicas](#5-consideraciones-técnicas).
 
-## 7. Objetivos de aprendizaje
+## 8. Objetivos de aprendizaje
 
 
 Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en tu proyecto. Piensa en eso al decidir tu estrategia de trabajo.
@@ -402,6 +423,29 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
 
 ### Web APIs
 
+- [ ] **Ruteado (History API, evento hashchange, window.location)**
+
+  <details><summary>Links</summary><p>
+
+  * [Manipulando el historial del navegador - MDN](https://developer.mozilla.org/es/docs/DOM/Manipulando_el_historial_del_navegador)
+</p></details>
+
+- [ ] **Browser storage (localStorage, sessionStorage)**
+
+  <details><summary>Links</summary><p>
+
+  * [Window.localStorage - MDN](https://developer.mozilla.org/es/docs/Web/API/Window/localStorage)
+</p></details>
+
+- [ ] **Fetch API**
+
+  <details><summary>Links</summary><p>
+
+  * [Fetch API - MDN](https://developer.mozilla.org/es/docs/Web/API/Fetch_API)
+</p></details>
+
+#### DOM (Document Object Model)
+
 - [ ] **Uso de selectores del DOM**
 
   <details><summary>Links</summary><p>
@@ -433,43 +477,7 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   * [Node.textContent - MDN](https://developer.mozilla.org/es/docs/Web/API/Node/textContent)
 </p></details>
 
-- [ ] **Ruteado (History API, evento hashchange, window.location)**
-
-  <details><summary>Links</summary><p>
-
-  * [Manipulando el historial del navegador - MDN](https://developer.mozilla.org/es/docs/DOM/Manipulando_el_historial_del_navegador)
-</p></details>
-
-- [ ] **Browser storage (localStorage, sessionStorage)**
-
-  <details><summary>Links</summary><p>
-
-  * [Window.localStorage - MDN](https://developer.mozilla.org/es/docs/Web/API/Window/localStorage)
-</p></details>
-
-- [ ] **Fetch API**
-
-  <details><summary>Links</summary><p>
-
-  * [Fetch API - MDN](https://developer.mozilla.org/es/docs/Web/API/Fetch_API)
-</p></details>
-
 ### JavaScript
-
-- [ ] **Callbacks**
-
-  <details><summary>Links</summary><p>
-
-  * [Función Callback - MDN](https://developer.mozilla.org/es/docs/Glossary/Callback_function)
-</p></details>
-
-- [ ] **Promesas**
-
-  <details><summary>Links</summary><p>
-
-  * [Promise - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-  * [How to Write a JavaScript Promise - freecodecamp (en inglés)](https://www.freecodecamp.org/news/how-to-write-a-javascript-promise-4ed8d44292b8/)
-</p></details>
 
 - [ ] **Uso de identificadores descriptivos (Nomenclatura y Semántica)**
 
@@ -499,6 +507,35 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   * [Tomando decisiones en tu código — condicionales - MDN](https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/conditionals)
 </p></details>
 
+- [ ] **Diferenciar entre expresiones (expressions) y sentencias (statements)**
+
+- [ ] **Uso de bucles/ciclos (while, for, for..of)**
+
+  <details><summary>Links</summary><p>
+
+  * [Bucles (Loops)](https://curriculum.laboratoria.la/es/topics/javascript/flow-control/loops)
+  * [Bucles e iteración - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Loops_and_iteration)
+</p></details>
+
+#### Asincronía
+
+- [ ] **Callbacks**
+
+  <details><summary>Links</summary><p>
+
+  * [Función Callback - MDN](https://developer.mozilla.org/es/docs/Glossary/Callback_function)
+</p></details>
+
+- [ ] **Promesas**
+
+  <details><summary>Links</summary><p>
+
+  * [Promise - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+  * [How to Write a JavaScript Promise - freecodecamp (en inglés)](https://www.freecodecamp.org/news/how-to-write-a-javascript-promise-4ed8d44292b8/)
+</p></details>
+
+#### Tipos de datos
+
 - [ ] **Diferenciar entre tipos de datos primitivos y no primitivos**
 
 - [ ] **Arrays (arreglos)**
@@ -521,15 +558,7 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   * [Objetos en JavaScript](https://curriculum.laboratoria.la/es/topics/javascript/objects/objects)
 </p></details>
 
-- [ ] **Diferenciar entre expresiones (expressions) y sentencias (statements)**
-
-- [ ] **Uso de bucles/ciclos (while, for, for..of)**
-
-  <details><summary>Links</summary><p>
-
-  * [Bucles (Loops)](https://curriculum.laboratoria.la/es/topics/javascript/flow-control/loops)
-  * [Bucles e iteración - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Loops_and_iteration)
-</p></details>
+#### Módulos
 
 - [ ] **Módulos de ECMAScript (ES Modules)**
 
@@ -538,6 +567,8 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   * [import - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/import)
   * [export - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/export)
 </p></details>
+
+#### Testing en Javascript
 
 - [ ] **Pruebas unitarias (unit tests)**
 
@@ -606,11 +637,15 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
 
 ### Control de Versiones (Git y GitHub)
 
+#### Git
+
 - [ ] **Git: Instalación y configuración**
 
 - [ ] **Git: Control de versiones con git (init, clone, add, commit, status, push, pull, remote)**
 
 - [ ] **Git: Integración de cambios entre ramas (branch, checkout, fetch, merge, reset, rebase, tag)**
+
+#### GitHub
 
 - [ ] **GitHub: Creación de cuenta y repos, configuración de llaves SSH**
 
@@ -643,7 +678,7 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   * [Pruebas con Usuarios 1 — ¿Qué, cuándo y para qué testeamos?](https://eugeniacasabona.medium.com/pruebas-con-usuarios-1-qu%C3%A9-cu%C3%A1ndo-y-para-qu%C3%A9-testeamos-7c3a89b4b5e7)
 </p></details>
 
-## 8. Pistas, tips y lecturas complementarias
+## 9. Pistas, tips y lecturas complementarias
 
 ### Primeros pasos
 
@@ -723,7 +758,7 @@ de tu aplicación
 * [Promesas](https://es.javascript.info/promise-basics)
 * [Haciendo peticiones con Fetch](https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Utilizando_Fetch)
 * [Almacenamiento con LocalStorage](https://es.javascript.info/localstorage)
-* [Creando un router SPA con vanilla Javascript](https://github.com/Laboratoria/guide-router/blob/guide-v1/README.md)
+* [Creando un router SPA con vanilla Javascript](https://github.com/Laboratoria/curriculum/blob/main/guides/router-spa/README.md)
 * [Delegación de eventos](https://es.javascript.info/event-delegation)
 
 #### Inteligencia Artificial y Prompting
@@ -742,7 +777,7 @@ de tu aplicación
 * [Vercel](https://vercel.com/)
 * [Netlify](https://www.netlify.com/)
 
-## 9. Consideraciones para pedir tu Project Feedback
+## 10. Consideraciones para pedir tu Project Feedback
 
 Antes de agendar tu Project Feedback con un coach, asegúrate que tu proyecto:
 
