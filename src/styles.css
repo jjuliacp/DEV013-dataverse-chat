@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+#root{
+    height: 100%;
+    display: initial;
+}
+
+/*--NAVBAR---*/
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    background-color: rgb(172, 159, 142);
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.navbar-img {
+    max-width: 5rem;
+}
+
+.nav-list {
+    list-style-type: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: aqua;
+}
+
+.nav_hamburguer {
+    display: none;
+}
+
+.nav_close {
+    display: none;
+}
+
+/*-- SECCION DE INFO CARTAS---*/
+section{
+    height: 100vh;
+}
+ .containerInfo{
+    width: 100%;
+    height: 80vh;
+    padding: 6rem 0;
+    background-color: antiquewhite;
+ }
+.imgInfo{
+    height: auto;
+    width: 10rem;
+}
+.container-text{
+    width: 34rem;
+}
+.mainInfoCard{
+    width: 70rem;
+    max-width: 95%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.nameCard{
+    color: rgb(33, 39, 39);
+    text-transform: uppercase;
+    margin-bottom: 1rem ;
+}
+.description{
+    font-size: 1rem;
+}
+@media screen and (max-width:700px) {
+
+    /*--NAVBAR---*/
+    .nav_hamburguer,
+    .nav_close {
+        display: block;
+    }
+
+    .navbar-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .navbar-icon-menu {
+        opacity: 0;
+        visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        gap: 1rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgb(13, 17, 17);
+        padding: 2rem;
+        box-shadow: 0 0 0 100vmax rgb(0, 0, 0, .5);
+
+    }
+
+    .nav.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        align-items: end;
+    }
+
+    .nav-list a {
+        color: aliceblue;
+    }
+}

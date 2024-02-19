@@ -7,20 +7,23 @@ import ChatGrupal from "./views/ChatGrupal.js";
 import CardsInfo from "./views/CardsInfo.js";
 import ApiKey from "./views/ApiKey.js";
 import ChatIndividual from "./views/ChatIndividual.js";
+import { navBar } from "./components/Navbar.js";
 
 //Ejemplo de definición de rutas:
 
 const routes = {
   "/": Home,
   "/error": Error,
-  "/ChatGrupal": ChatGrupal,
-  "/CardsInfo": CardsInfo,
-  "/ApiKey": ApiKey,
-  "/ChatIndividual": ChatIndividual,
+  "/chatGrupal": ChatGrupal,
+  "/cardsInfo": CardsInfo,
+  "/apikey": ApiKey,
+  "/chatIndividual": ChatIndividual,
 };
 
+
+
 const viewContainer = document.getElementById("root");
-//viewContainer.appendChild(Home())
+//viewContainer.appendChild(navBar())
 setRoutes(routes);
 setRootEl(viewContainer);
 

@@ -21,7 +21,7 @@ const renderView = (pathname, props = {}) => { // funcion para renderizar una vi
     const root = rootEl;
     root.innerHTML = '';
     // find the correct view in ROUTES for the pathname
-    console.log(pathname);
+    console.log(ROUTES[pathname]);
     if (ROUTES[pathname]) {
         const template = ROUTES[pathname](props);
         console.log(template);
