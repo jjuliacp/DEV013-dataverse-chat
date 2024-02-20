@@ -7,20 +7,20 @@ import ChatGrupal from "./views/ChatGrupal.js";
 import CardsInfo from "./views/CardsInfo.js";
 import ApiKey from "./views/ApiKey.js";
 import ChatIndividual from "./views/ChatIndividual.js";
-import { navBar } from "./components/Navbar.js";
 
 //Ejemplo de definición de rutas:
 
 const routes = {
-  "/": Home,
-  "/error": Error,
-  "/chatGrupal": ChatGrupal,
-  "/cardsInfo": CardsInfo,
-  "/apikey": ApiKey,
-  "/chatIndividual": ChatIndividual,
+  "/": { component: Home, title: "Sakura | Home" },
+  "/error": { component: Error, title: "Sakura | Error 404" },
+  "/ChatGrupal": { component: ChatGrupal, title: "Sakura | Chat Grupal" },
+  "/CardsInfo": { component: CardsInfo, title: "Sakura | Descripción" },
+  "/ApiKey": { component: ApiKey, title: "Sakura | Api Key" },
+  "/ChatIndividual": {
+    component: ChatIndividual,
+    title: "Sakura | Chat individual",
+  },
 };
-
-
 
 const viewContainer = document.getElementById("root");
 //viewContainer.appendChild(navBar())
@@ -28,7 +28,7 @@ setRoutes(routes);
 setRootEl(viewContainer);
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  //console.log("DOM fully loaded and parsed");
+  console.log(event.target.location.pathname);
   onURLChange(event.target.location.pathname);
 });
 
