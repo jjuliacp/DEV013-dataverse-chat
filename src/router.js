@@ -24,13 +24,15 @@ const renderView = (pathname, props = {}) => {
   const root = rootEl;
   root.innerHTML = "";
   // find the correct view in ROUTES for the pathname
-  console.log(pathname);
+  /* console.log(pathname); */
   if (ROUTES[pathname]) {
-    const { component, title } = ROUTES[pathname]; //Desetructuración para acceder a las propiedades del pathname
+    const { component, title } = ROUTES[pathname];
+    console.log(component);
+    //Desetructuración para acceder a las propiedades del pathname
     const template = component(props);
 
     document.title = title;
-    console.log(template);
+    /* console.log(template); */
     root.appendChild(template); // add the view element to the DOM root element
   } else {
     // in case not found render the error view
