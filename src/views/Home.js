@@ -1,15 +1,15 @@
 import { navBar } from "../components/Navbar.js";
 import { Footer } from "../Components/Footer.js";
 import data from "../data/dataset.js";
+import { navigateTo } from "../router.js";
 
 const Home = () => {
-  const navBarComponent = navBar();
-
   const homeView = document.createElement("section"); //contenedor principal de vista home
-  homeView.appendChild(navBarComponent);
+  const navBarComponent = navBar();
+  const footerComponent = Footer();
 
   const inicio = document.createElement("div");
-
+  inicio.className = "inicioContainer"
   inicio.innerHTML = `
 <section class="inicio-section container" id="Inicio">
 <div class="content-left">
@@ -32,7 +32,7 @@ const Home = () => {
 `;
 
   const filterContainer = document.createElement("div");
-
+  filterContainer.className = "filterContainer"
   filterContainer.innerHTML = `
   <h3>Cartas Clow</h3>
   <!-- filtros/botones -->
@@ -78,10 +78,10 @@ const Home = () => {
   <p id="text"></p>
   <button data-testid="button-clear" class="reset-btn">Reset</button>`;
 
-  const CardsInfo = document.createElement("section");
-
+  const cardsInfo = document.createElement("div");
+  cardsInfo.className = "cartasContainer"
   data.forEach((cartas) => {
-    CardsInfo.innerHTML += `
+    cardsInfo.innerHTML += `
   <ul>
     <li class="card" itemscope itemtype="Cards">
     <dl>
@@ -91,28 +91,27 @@ const Home = () => {
       </dd>
         <dd class="cardName" itemprop="name">${cartas.name} </dd>
         <dd class="cardDescription" itemprop="shortdescription">${cartas.shortDescription}</dd>
-        <button class="card-button">Ver mas</button>
+        <button class="card-button" data-id="${cartas.id}">Ver mas</button>
     </div>
     </dl>
     </li>
     </ul>
   `;
   });
-  /* CardsInfo.innerHTML+= data.forEach( */
-  //title.innerHTML = "Sakura: Cazadora de cartas";
+  const btns = cardsInfo.querySelectorAll(".card-button");
+  btns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const cardId = btn.getAttribute("data-id");
+      navigateTo("/cardsInfo", cardId);
+    })
+  })
 
-  //Renderizando componentes
-
-  const footerComponent = Footer();
-
-  //Renderizando en Home
-
+  homeView.appendChild(navBarComponent);
   homeView.appendChild(inicio);
   homeView.appendChild(filterContainer);
-  homeView.appendChild(CardsInfo);
+  homeView.appendChild(cardsInfo);
   homeView.appendChild(footerComponent);
 
-  console.log(Home);
 
   return homeView;
 };

@@ -27,7 +27,7 @@ const renderView = (pathname, props = {}) => {
   /* console.log(pathname); */
   if (ROUTES[pathname]) {
     const { component, title } = ROUTES[pathname];
-    console.log(component);
+    //console.log(component);
     //Desetructuración para acceder a las propiedades del pathname
     const template = component(props);
 
