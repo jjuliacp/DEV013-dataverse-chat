@@ -2,14 +2,13 @@ import { navBar } from "../components/Navbar.js";
 import { Footer } from "../Components/Footer.js";
 import data from "../data/dataset.js";
 import { navigateTo } from "../router.js";
+import { elementDataFilter } from "../lib/dataFunctions.js";
 
 const Home = () => {
   const homeView = document.createElement("section"); //contenedor principal de vista home
-  const navBarComponent = navBar();
-  const footerComponent = Footer();
 
   const inicio = document.createElement("div");
-  inicio.className = "inicioContainer"
+  inicio.className = "inicioContainer";
   inicio.innerHTML = `
 <section class="inicio-section container" id="Inicio">
 <div class="content-left">
@@ -32,7 +31,7 @@ const Home = () => {
 `;
 
   const filterContainer = document.createElement("div");
-  filterContainer.className = "filterContainer"
+  filterContainer.className = "filterContainer";
   filterContainer.innerHTML = `
   <h3>Cartas Clow</h3>
   <!-- filtros/botones -->
@@ -79,7 +78,7 @@ const Home = () => {
   <button data-testid="button-clear" class="reset-btn">Reset</button>`;
 
   const cardsInfo = document.createElement("div");
-  cardsInfo.className = "cartasContainer"
+  cardsInfo.className = "cartasContainer";
   data.forEach((cartas) => {
     cardsInfo.innerHTML += `
   <ul>
@@ -98,20 +97,39 @@ const Home = () => {
     </ul>
   `;
   });
+
+  /* const updateCardsInfo = () => {
+    cardsInfo.innerHTML = ""; // Limpiar el contenido anterior
+  } */
+
+  //--------- filtrado elementos-------
+
+  let cardsData = data; // variable de la data original - variable global
+
+  const selectElement = filterContainer.querySelector(
+    '[data-testid="select-filter"]'
+  );
+
+  selectElement.addEventListener("change", (event) => {
+    const filteredData = elementDataFilter(
+      data,
+      "elementEsencial",
+      event.target.value
+    ); //datos que se imprime
+    cardsData = filteredData; // asigno nuevo valor de data filtrada
+  });
+
+  //-------Botón de VerMas----------
+
   const btns = cardsInfo.querySelectorAll(".card-button");
   btns.forEach(function (btn) {
     btn.addEventListener("click", function () {
       const cardId = btn.getAttribute("data-id");
       navigateTo("/cardsInfo", cardId);
-    })
-  })
+    });
+  });
 
-  homeView.appendChild(navBarComponent);
-  homeView.appendChild(inicio);
-  homeView.appendChild(filterContainer);
-  homeView.appendChild(cardsInfo);
-  homeView.appendChild(footerComponent);
-
+  homeView.append(navBar(), inicio, filterContainer, cardsInfo, Footer());
 
   return homeView;
 };
