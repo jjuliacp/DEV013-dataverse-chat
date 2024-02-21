@@ -1,3 +1,26 @@
+export const  renderData = (data) => { // función toma un array de objetos y genera un bloque de HTML para cada objeto
+  let cardsHtml ='' ; // se utilizará para acumular el HTML que se generará en el bucle.
+  data.forEach((cartas) => {
+  cardsHtml +=  `
+  <ul>
+    <li class="card" itemscope itemtype="Cards">
+    <dl>
+    <div class="card-front">
+      <dd class="img-container" itemprop="imagenUrl">
+        <img class="img-card" src=${cartas.imageUrl} alt=${cartas.name}>
+      </dd>
+        <dd class="cardName" itemprop="name">${cartas.name} </dd>
+        <dd class="cardDescription" itemprop="shortdescription">${cartas.shortDescription}</dd>
+        <button class="card-button" data-id="${cartas.id}">Ver mas</button>
+    </div>
+    </dl>
+    </li>
+    </ul>
+  `;
+  })
+  return cardsHtml
+}
+
 //funcion de filtrar por elemento
 export const elementDataFilter = (data, filterBy, value) => {
   const filterElement = data.filter(
@@ -6,7 +29,7 @@ export const elementDataFilter = (data, filterBy, value) => {
   return filterElement;
 };
 
-//sort asc
+//funcion de ordenado
 export const sortData = (data, sortBy, sortOrder) => {
   if (sortOrder === "asc") {
     return data.sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
@@ -22,29 +45,23 @@ export const dangerousDataFilter = (data, filterBy, value) => {
   const filterDangerous = data.filter(
     (dangerous) => dangerous.extraInfo[filterBy] === value.includes("true")
   );
-  /* console.log("value: ", value); */
-  /* console.log("data despues del filtro: ", filterDangerous); */
   return filterDangerous;
 };
 
 //Estadistica de las cartas por peligro o inofensivas
 
 export const computeStats = (data) => {
-  //console.log(data);
   const result = data.reduce(
     (acumulador, carta) => {
       acumulador[
         carta.extraInfo.isDangerous ? "peligrosas" : "inofensivas"
       ] += 1;
-      //console.log(acumulador);
       return acumulador;
     },
     { peligrosas: 0, inofensivas: 0 }
   );
-  const promPeligrosas = Math.round((result.peligrosas / data.length) * 100); // Math.round() redondear
+  const promPeligrosas = Math.round((result.peligrosas / data.length) * 100); 
   const promInofensivas = Math.round((result.inofensivas / data.length) * 100);
-  //console.log('El porcentaje de cartas peligrosas son', promPeligrosas);
-  //console.log('El porcentaje de cartas inocentes son', promInofensivas);
   return { promPeligrosas, promInofensivas };
 };
 

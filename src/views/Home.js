@@ -2,7 +2,7 @@ import { navBar } from "../components/Navbar.js";
 import { Footer } from "../Components/Footer.js";
 import data from "../data/dataset.js";
 import { navigateTo } from "../router.js";
-import { elementDataFilter } from "../lib/dataFunctions.js";
+import { elementDataFilter, renderData, sortData, dangerousDataFilter, computeStats, percent } from "../lib/dataFunctions.js";
 
 const Home = () => {
   const homeView = document.createElement("section"); //contenedor principal de vista home
@@ -10,25 +10,19 @@ const Home = () => {
   const inicio = document.createElement("div");
   inicio.className = "inicioContainer";
   inicio.innerHTML = `
-<section class="inicio-section container" id="Inicio">
-<div class="content-left">
-        <h2 class="content-left-tittle">Sakura: Cazadora Mágica</h2>
-        <p>
-          Sakura debe recapturar las Cartas Clow antes de que desencadenen el
-          caos. Las Cartas Clow son un elemento de la serie de manga y anime
-          "Cardcaptor Sakura", creada por CLAMP. En la historia, las Cartas
-          Clow son cartas mágicas creadas por el poderoso mago Clow Reed. Cada
-          carta representa una fuerza mágica única y tiene su propia
-          personalidad y habilidades distintivas.
-        </p>
-      </div>
-      <div class="content-right">
-        <img class="sakura-img"
+  <section class="inicio-section container" id="Inicio">
+    <div class="content-left">
+      <h2 class="content-left-tittle">Sakura: Cazadora Mágica</h2>
+      <p>
+      Sakura debe recapturar las Cartas Clow antes de que desencadenen el caos. Las Cartas Clow son un elemento de la serie de manga y anime "Cardcaptor Sakura", creada por CLAMP. En la historia, las Cartas Clow son cartas mágicas creadas por el poderoso mago Clow Reed. Cada carta representa una fuerza mágica única y tiene su propia personalidad y habilidades distintivas.
+      </p>
+    </div>
+    <div class="content-right">
+      <img class="sakura-img"
           src="./img/sakura-inicio.jpg"
           alt="fotoInicioSakura" />
-      </div>
-</section>
-`;
+    </div>
+  </section>`;
 
   const filterContainer = document.createElement("div");
   filterContainer.className = "filterContainer";
@@ -77,57 +71,88 @@ const Home = () => {
   <p id="text"></p>
   <button data-testid="button-clear" class="reset-btn">Reset</button>`;
 
-  const cardsInfo = document.createElement("div");
+  let cardsData = data; // variable de la data original  - variable global
+  const cardsInfo = document.createElement("div");   // contenedor de cartas (o elementos HTML) que se generarán dinámicamente.
   cardsInfo.className = "cartasContainer";
-  data.forEach((cartas) => {
-    cardsInfo.innerHTML += `
-  <ul>
-    <li class="card" itemscope itemtype="Cards">
-    <dl>
-    <div class="card-front active">
-      <dd class="img-container" itemprop="imagenUrl">
-        <img class="img-card" src=${cartas.imageUrl} alt=${cartas.name}>
-      </dd>
-        <dd class="cardName" itemprop="name">${cartas.name} </dd>
-        <dd class="cardDescription" itemprop="shortdescription">${cartas.shortDescription}</dd>
-        <button class="card-button" data-id="${cartas.id}">Ver mas</button>
-    </div>
-    </dl>
-    </li>
-    </ul>
-  `;
-  });
+  cardsInfo.innerHTML = renderData(data)    //  colocándolo dentro de este contenedor, el html dinamico generado.
 
-  /* const updateCardsInfo = () => {
-    cardsInfo.innerHTML = ""; // Limpiar el contenido anterior
-  } */
-
-  //--------- filtrado elementos-------
-
-  let cardsData = data; // variable de la data original - variable global
-
-  const selectElement = filterContainer.querySelector(
-    '[data-testid="select-filter"]'
-  );
-
-  selectElement.addEventListener("change", (event) => {
-    const filteredData = elementDataFilter(
-      data,
-      "elementEsencial",
-      event.target.value
-    ); //datos que se imprime
-    cardsData = filteredData; // asigno nuevo valor de data filtrada
-  });
 
   //-------Botón de VerMas----------
-
-  const btns = cardsInfo.querySelectorAll(".card-button");
-  btns.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      const cardId = btn.getAttribute("data-id");
-      navigateTo("/cardsInfo", cardId);
+  function eventoBtnCard() {
+    const btns = cardsInfo.querySelectorAll(".card-button");
+    btns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const cardId = btn.getAttribute("data-id");
+        navigateTo("/cardsInfo", cardId);
+      });
     });
+  }
+  eventoBtnCard();
+
+  //--------- filtrado elementos-------
+  const selectElement = filterContainer.querySelector('[data-testid="select-filter"]');
+  selectElement.addEventListener("change", (event) => {
+    const filteredData = elementDataFilter(data, "elementEsencial", event.target.value); //datos que se imprime
+    cardsData = filteredData; // asigno nuevo valor de data filtrada
+   // console.log(cardsData);
+    cardsInfo.innerHTML = renderData(cardsData) //  colocándolo dentro de cardsinfo, la data filtrada renderizada.
+    eventoBtnCard();
   });
+
+  //---------- filtrado daño-------------
+  let filterDangerous = []; // data filtrada
+  const selectDangerous = filterContainer.querySelector('[data-testid="select-filter2"]');
+  const text = filterContainer.querySelector('#text') // para mostrar estadisticas
+  selectDangerous.addEventListener("change", () => {
+    const selected = selectDangerous.options[selectDangerous.selectedIndex].value;
+    filterDangerous = dangerousDataFilter(data, "isDangerous", selected);
+    cardsData = filterDangerous;
+    const selectedContent = selectDangerous.options[selectDangerous.selectedIndex].textContent; // data + campo que filtro y el valor que quiero filtrar
+    if (selectedContent === 'Inofensiva') {
+      text.textContent = `El  ${computeStats(data).promInofensivas}% de cartas son inofensivas` // ${} insertar valores de variables o expresiones dentro de una cadena de texto.    } else {
+      text.textContent = `El ${computeStats(data).promPeligrosas}% de cartas son peligrosas`
+    }
+    cardsInfo.innerHTML = renderData(cardsData);// sobrescribir la data filtrada
+    eventoBtnCard();
+  });
+
+  // ---------- filtro por capturado
+
+  let filterCapturedPercent = []; // data filtrada
+  const selectCaptured = filterContainer.querySelector('[data-testid="select-estadistic"]');
+  selectCaptured.addEventListener("change", () => {
+    filterCapturedPercent = percent(data, "capturedBySyaoran");
+    const selectIndex = selectCaptured.options[selectCaptured.selectedIndex].textContent;
+    if (selectIndex === "% Cartas capturadas por Sakura") {
+      text.textContent = `El porcentaje de cartas capturadas por Sakura es ${filterCapturedPercent.percentSakura}%`;
+    } else {
+      text.textContent = `El porcentaje de cartas capturadas por Syaoran es ${filterCapturedPercent.percentSyaoran}%`;
+    }
+    eventoBtnCard();
+  });
+
+  // ------------- ordenar--------  
+  const sortOrden = filterContainer.querySelector('[data-testid="select-sort"]');
+  sortOrden.addEventListener("change", (e) => {
+    const sortedData = sortData(cardsData, "name", e.target.value);
+    console.log(sortedData);
+    cardsData = sortedData;
+    cardsInfo.innerHTML = renderData(sortedData);
+    eventoBtnCard();
+  });
+
+  //--- boton de reseteo--------
+  const resetBtn = filterContainer.querySelector('[data-testid="button-clear"]')
+  resetBtn.addEventListener('click', () => {
+    //console.log(resetBtn);
+    cardsData = data;
+    cardsInfo.innerHTML = renderData(cardsData);
+    selectElement[0].selected = true;
+    selectDangerous[0].selected = true;
+    sortOrden[0].selected = true;
+    text.textContent = "";
+  });
+
 
   homeView.append(navBar(), inicio, filterContainer, cardsInfo, Footer());
 
