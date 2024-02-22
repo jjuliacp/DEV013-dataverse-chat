@@ -1,8 +1,7 @@
 export const navBar = () => {
     const nav = document.createElement("nav");
-    nav.className="nav-container"
     nav.innerHTML = 
-    `
+    `<div class="contentHome navContainer">
     <div class="navbar-logo">
         <img class ="navbar-img" 
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Star_of_Sakura_Card_Captor.svg/2560px-Star_of_Sakura_Card_Captor.svg.png" 
@@ -16,8 +15,9 @@ export const navBar = () => {
         <ul class="nav-list">
             <li class="nav-links"><a href="#Inicio">Inicio</a></li>
             <li class="nav-links"><a href="#Cartas">Cartas</a></li>
-            <li class="nav-links"><a href="#Chat">Chat</a></li>
+            <button class="nav-links navBtn">Chat Grupal</button>
         </ul>
+   </div>
    </div>
    
    

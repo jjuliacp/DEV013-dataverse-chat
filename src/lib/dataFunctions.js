@@ -2,7 +2,7 @@ export const  renderData = (data) => { // función toma un array de objetos y ge
   let cardsHtml ='' ; // se utilizará para acumular el HTML que se generará en el bucle.
   data.forEach((cartas) => {
   cardsHtml +=  `
-  <ul>
+  <ul >
     <li class="card" itemscope itemtype="Cards">
     <dl>
     <div class="card-front">
@@ -11,7 +11,7 @@ export const  renderData = (data) => { // función toma un array de objetos y ge
       </dd>
         <dd class="cardName" itemprop="name">${cartas.name} </dd>
         <dd class="cardDescription" itemprop="shortdescription">${cartas.shortDescription}</dd>
-        <button class="card-button" data-id="${cartas.id}">Ver mas</button>
+        <button class="card-button button-common" data-id="${cartas.id}">Ver mas</button>
     </div>
     </dl>
     </li>

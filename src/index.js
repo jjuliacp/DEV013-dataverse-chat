@@ -15,7 +15,7 @@ const routes = {
   "/error": { component: Error, title: "Sakura | Error 404" },
   "/ChatGrupal": { component: ChatGrupal, title: "Sakura | Chat Grupal" },
   "/cardsInfo": { component: CardsInfo, title: "Sakura | Descripción" },
-  "/ApiKey": { component: ApiKey, title: "Sakura | Api Key" },
+  "/apikey": { component: ApiKey, title: "Sakura | Api Key" },
   "/ChatIndividual": {
     component: ChatIndividual,
     title: "Sakura | Chat individual",
