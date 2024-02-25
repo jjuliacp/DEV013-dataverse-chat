@@ -29,19 +29,19 @@ const CardsInfo = (card) => {
         </div>
         <dialog id="dialog"> 
             <div class="chat">
-                <div class="chat-header">           
-                    <div class="chat-about">
-                        <h3 class="chat-with">Chat con </h3>
-                    </div>
-                    <p class="btn-cierre">X</p>
+                <div class="chat-header"> 
+                    <img id="img" class="img-chat" src=${carta.imageUrl} alt=${carta.name} />          
+                    <h2 class="chat-with">${carta.name} </h2>
+                    <h2 class="chat-with">${carta.shortDescription}</h2>
+                    <a href="#" id="close" class="nav_close"><img src="./img/Vector.svg" class="navClose"></a> 
                 </div>
                 <div class="chat-history">
-                </div>
                 <div class="chat-message">
-                    <textarea name="message-send" id="message-send" placeholder="type your message"> </textarea>
-                    <button class="containerSend">    
-                    <img class="send" src="./img/send-2-svgrepo-com (1).svg" alt="iconSend" />
-                    </button>
+                <textarea name="message-send" id="message-send" placeholder="type your message"> </textarea>
+                <button class="containerSend btnSend">    
+                <img class="send" src="./img/send-2-svgrepo-com (1).svg" alt="iconSend" />
+                </button>
+            </div>
                 </div>
             </div>
         </dialog> 
@@ -50,7 +50,7 @@ const CardsInfo = (card) => {
 
     const dialog = cardElement.querySelector('#dialog');
     const modal = cardElement.querySelector("#modal");
-    modal.addEventListener('click', (e)=> {
+    modal.addEventListener('click', (e) => {
         dialog.showModal();
 
     })

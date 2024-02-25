@@ -16,7 +16,7 @@ const routes = {
   "/ChatGrupal": { component: ChatGrupal, title: "Sakura | Chat Grupal" },
   "/cardsInfo": { component: CardsInfo, title: "Sakura | Descripción" },
   "/apikey": { component: ApiKey, title: "Sakura | Api Key" },
-  "/ChatIndividual": {
+  "/chatIndividual": {
     component: ChatIndividual,
     title: "Sakura | Chat individual",
   },

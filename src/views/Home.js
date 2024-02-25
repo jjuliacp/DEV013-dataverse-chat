@@ -9,7 +9,7 @@ const Home = () => {
   const content = document.createElement("div");
   content.className = "contentHome"
   const inicio = document.createElement("div");
-  inicio.id="Inicio";
+  inicio.id = "Inicio";
   inicio.className = "inicioContainer";
   inicio.innerHTML = `
   <div class="contentPortada">
@@ -23,7 +23,7 @@ const Home = () => {
 
   const filterContainer = document.createElement("div");
   filterContainer.className = "filterContainer";
-  filterContainer.id ="Cartas"
+  filterContainer.id = "Cartas"
   filterContainer.innerHTML = `
   <h3 class="title cartasClow">Cartas Clow</h3>
   <!-- filtros/botones -->
