@@ -1,37 +1,31 @@
 export const navBar = () => {
     const nav = document.createElement("nav");
-    nav.innerHTML = 
-    `<div class="contentHome navContainer">
-    <div class="navbar-logo">
-        <img class ="navbar-img" 
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Star_of_Sakura_Card_Captor.svg/2560px-Star_of_Sakura_Card_Captor.svg.png" 
-        alt="logoSakura" />
-        <h2 class="navbar-text">Sakura Card Captor</h2>
-        <a href="#nav" id="open" class="nav_hamburguer"><img src="./img/mingcute_menu-fill.svg" class="nav-icon"></a>
-       
+    nav.innerHTML =`
+    <div id="nav" class="hero nav">
+      <h2 class="navbar-text"><img  class ="navbar-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Star_of_Sakura_Card_Captor.svg/2560px-Star_of_Sakura_Card_Captor.svg.png" alt="logoSakura" />Sakura Card Captor</h2>
+      <ul class="nav-link">
+        <li class="nav-item"><a href="./">Inicio</a></li>
+        <li class="nav-item"><a href="./#Cartas">Cartas</a></li>
+        <button class="nav-item navBtn">Chat Grupal</button>
+      </ul>
+      <a href="#nav" id="open" class="nav_hamburguer"><img src="./img/mingcute_menu-fill.svg" class="nav-icon"></a>
+      <a href="#" id="close" class="nav_close"><img src="./img/Vector.svg" class="nav-icon"></a> 
     </div>
-    <div class="navbar-icon-menu" >
-    <a href="#nav" id="close" class="nav_close"><img src="./img/mingcute_menu-fill.svg" class="nav-icon"></a>  
-        <ul class="nav-list">
-            <li class="nav-links"><a href="#Inicio">Inicio</a></li>
-            <li class="nav-links"><a href="#Cartas">Cartas</a></li>
-            <button class="nav-links navBtn">Chat Grupal</button>
-        </ul>
-   </div>
-   </div>
-   
    
     `;
-    
-// const open = document.querySelector("#open");
-// const close = document.querySelector("#close");
 
-// open.addEventListener("click",()=>{
-//   nav.classList.add("visible");
-// });
-// close.addEventListener("click", ()=>{
-//   nav.classList.remove("visible")
-// });
-  
+    // const menu = nav.querySelector("#menu");
+    // const open = nav.querySelector("#open");
+    // const close = nav.querySelector("#close");
+    
+    // open.addEventListener("click", () => {
+    //   menu.classList.add("visible");
+    // });
+    
+    // close.addEventListener("click", () => {
+    //   menu.classList.remove("visible");
+    // });
+
     return nav
 }
+ 

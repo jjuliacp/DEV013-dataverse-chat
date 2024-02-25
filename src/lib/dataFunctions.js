@@ -11,7 +11,7 @@ export const  renderData = (data) => { // función toma un array de objetos y ge
       </dd>
         <dd class="cardName" itemprop="name">${cartas.name} </dd>
         <dd class="cardDescription" itemprop="shortdescription">${cartas.shortDescription}</dd>
-        <button class="card-button button-common" data-id="${cartas.id}">Ver mas</button>
+        <a href="./cardsInfo?id=${cartas.id}" class="card-button button-common">Ver más</a>
     </div>
     </dl>
     </li>

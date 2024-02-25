@@ -6,7 +6,7 @@ const ApiKey = () => {
   contenido.className ="content"
   contenido.innerHTML = `
   <div class="apikeyContent">
-  <h1 class="name">API KEY ADMIN</h1>
+  <h1 class="title">API KEY ADMIN</h1>
   <input type="password" id="password" placeholder ="Ingresa aqui tu api key..." name="password">
   <input type="submit"  class="btnChat button-common" value="Enviar"/></div>
   `;

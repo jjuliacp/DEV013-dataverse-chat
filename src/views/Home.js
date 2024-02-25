@@ -14,7 +14,7 @@ const Home = () => {
   inicio.innerHTML = `
   <div class="contentPortada">
     <h2 class="title">Sakura: Cazadora Mágica</h2>
-    <p>
+    <p class="description">
       Sakura debe recapturar las Cartas Clow antes de que desencadenen el caos. Las Cartas Clow son un elemento de la serie de manga y anime "Cardcaptor Sakura", creada por CLAMP. En la historia, las Cartas Clow son cartas mágicas creadas por el poderoso mago Clow Reed. Cada carta representa una fuerza mágica única y tiene su propia personalidad y habilidades distintivas.
     </p>
   </div>
@@ -76,16 +76,6 @@ const Home = () => {
 
 
   //-------Botón de VerMas----------
-  function eventoBtnCard() {
-    const btns = cardsInfo.querySelectorAll(".card-button");
-    btns.forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        const cardId = btn.getAttribute("data-id");
-        navigateTo("/cardsInfo", cardId);
-      });
-    });
-  }
-  eventoBtnCard();
 
   //--------- filtrado elementos-------
   const selectElement = filterContainer.querySelector('[data-testid="select-filter"]');
@@ -94,7 +84,6 @@ const Home = () => {
     cardsData = filteredData; // asigno nuevo valor de data filtrada
     // console.log(cardsData);
     cardsInfo.innerHTML = renderData(cardsData) //  colocándolo dentro de cardsinfo, la data filtrada renderizada.
-    eventoBtnCard();
   });
 
   //---------- filtrado daño-------------
@@ -111,7 +100,6 @@ const Home = () => {
       text.textContent = `El ${computeStats(data).promPeligrosas}% de cartas son peligrosas`
     }
     cardsInfo.innerHTML = renderData(cardsData);// sobrescribir la data filtrada
-    eventoBtnCard();
   });
 
   // ---------- filtro por capturado
@@ -126,7 +114,6 @@ const Home = () => {
     } else {
       text.textContent = `El porcentaje de cartas capturadas por Syaoran es ${filterCapturedPercent.percentSyaoran}%`;
     }
-    eventoBtnCard();
   });
 
   // ------------- ordenar--------  
@@ -136,7 +123,7 @@ const Home = () => {
     console.log(sortedData);
     cardsData = sortedData;
     cardsInfo.innerHTML = renderData(sortedData);
-    eventoBtnCard();
+
   });
 
   //--- boton de reseteo--------

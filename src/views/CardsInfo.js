@@ -1,20 +1,21 @@
 import { navBar } from '../components/Navbar.js';
 import data from '../data/dataset.js';
-const CardsInfo = (cardId) => {
+const CardsInfo = (card) => {
     const infoCarta = document.createElement("section");
-    const carta = data.find(x => x.id === cardId)
+    const carta = data.find(x => x.id === card.id)
+    console.log(card.id);
     const cardElement = document.createElement("div");
     cardElement.className = "content"
     cardElement.innerHTML = `
         <div class="mainInfoCard">
             <img id="img" class="imgInfo" src=${carta.imageUrl} alt=${carta.name} />
             <div class="container-text">
-                <h2 class="name">${carta.name}</h2>
+                <h2 class="title">${carta.name}</h2>
                 <p class="description">${carta.description} 
                     <br><strong>Elemento:</strong> ${carta.facts.elementEsencial} 
                     <br><strong>Poder:</strong>  ${carta.facts.powerFul}
                 </p>
-                <button  class="btnChat button-common">
+                <button id="modal"  class="btnChat button-common">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round"stroke-linejoin="round"></g>
@@ -24,12 +25,39 @@ const CardsInfo = (cardId) => {
                 </g>
                 </svg>Chatear</button>
             </div>
-        </div> 
+    
+        </div>
+        <dialog id="dialog"> 
+            <div class="chat">
+                <div class="chat-header">           
+                    <div class="chat-about">
+                        <h3 class="chat-with">Chat con </h3>
+                    </div>
+                    <p class="btn-cierre">X</p>
+                </div>
+                <div class="chat-history">
+                </div>
+                <div class="chat-message">
+                    <textarea name="message-send" id="message-send" placeholder="type your message"> </textarea>
+                    <button class="containerSend">    
+                    <img class="send" src="./img/send-2-svgrepo-com (1).svg" alt="iconSend" />
+                    </button>
+                </div>
+            </div>
+        </dialog> 
 
     `;
+
+    const dialog = cardElement.querySelector('#dialog');
+    const modal = cardElement.querySelector("#modal");
+    modal.addEventListener('click', (e)=> {
+        dialog.showModal();
+
+    })
+
     infoCarta.append(navBar(), cardElement);
     //title.innerHTML = "Sakura: Cazadora de cartas";
-    
+
     return infoCarta;
 };
 
