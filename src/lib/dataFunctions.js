@@ -1,7 +1,8 @@
-export const  renderData = (data) => { // función toma un array de objetos y genera un bloque de HTML para cada objeto
-  let cardsHtml ='' ; // se utilizará para acumular el HTML que se generará en el bucle.
+export const renderData = (data) => {
+  // función toma un array de objetos y genera un bloque de HTML para cada objeto
+  let cardsHtml = ""; // se utilizará para acumular el HTML que se generará en el bucle.
   data.forEach((cartas) => {
-  cardsHtml +=  `
+    cardsHtml += `
   <ul>
     <li class="card" itemscope itemtype="Cards">
     <dl>
@@ -17,9 +18,9 @@ export const  renderData = (data) => { // función toma un array de objetos y ge
     </li>
     </ul>
   `;
-  })
-  return cardsHtml
-}
+  });
+  return cardsHtml;
+};
 
 //funcion de filtrar por elemento
 export const elementDataFilter = (data, filterBy, value) => {
@@ -60,7 +61,7 @@ export const computeStats = (data) => {
     },
     { peligrosas: 0, inofensivas: 0 }
   );
-  const promPeligrosas = Math.round((result.peligrosas / data.length) * 100); 
+  const promPeligrosas = Math.round((result.peligrosas / data.length) * 100);
   const promInofensivas = Math.round((result.inofensivas / data.length) * 100);
   return { promPeligrosas, promInofensivas };
 };
