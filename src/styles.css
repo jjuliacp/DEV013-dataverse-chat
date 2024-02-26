@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 :root {
   --color-fondo: #f1e0d9;
@@ -7,12 +7,17 @@
   /* Texto Titulo */
   --color-texto1: #bb1662;
   /* Texto general */
-  --color-gradient: linear-gradient(90deg,
-      rgba(241, 224, 217, 1) 15%,
-      rgba(227, 170, 185, 1) 39%,
-      rgba(241, 224, 217, 1) 58%,
-      rgba(227, 170, 185, 1) 79%);
-
+  --color-fondo2: #632b46;
+  /* fondo2 general */
+  --color-kero: #ff9232;
+  /* color kerberos */
+  --color-gradient: linear-gradient(
+    90deg,
+    rgba(241, 224, 217, 1) 15%,
+    rgba(227, 170, 185, 1) 39%,
+    rgba(241, 224, 217, 1) 58%,
+    rgba(227, 170, 185, 1) 79%
+  );
 }
 
 * {
@@ -23,7 +28,7 @@
 }
 
 body {
-  background: var(--color-gradient)
+  background: var(--color-gradient);
 }
 
 .contentHome,
@@ -43,7 +48,6 @@ nav {
   z-index: 999;
   position: fixed;
   top: 0;
-
 }
 
 .nav {
@@ -86,7 +90,6 @@ nav {
   transform: unset;
   grid-column: -2/-1;
   grid-row: 1/2;
-
 }
 
 .nav-item {
@@ -108,8 +111,7 @@ nav {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border: none;
   font-weight: 500;
-  transition: all .5s ease-in-out;
-
+  transition: all 0.5s ease-in-out;
 }
 
 .navBtn:hover {
@@ -123,7 +125,7 @@ nav {
   cursor: pointer;
   grid-column: -2/-1;
   grid-row: 1/2;
-  transition: .4s transform;
+  transition: 0.4s transform;
 }
 
 .nav_hamburguer {
@@ -135,7 +137,6 @@ nav {
 }
 
 /*----------- HOME---------- */
-
 
 .inicioContainer {
   padding: 5% 0;
@@ -185,13 +186,11 @@ select[data-testid="select-estadistic"] {
   height: 2.5rem;
   width: 100%;
   padding: 0 10px;
-
 }
 
 .container-ordenar {
   text-align: end;
 }
-
 
 #text {
   width: 100%;
@@ -206,15 +205,12 @@ select[data-testid="select-estadistic"] {
   padding: 1rem 1.5rem;
   background-color: #c23071;
   color: snow;
-
 }
 
 .reset-btn:hover {
   background-color: #ac386c;
   color: snow;
   font-weight: 600;
-
-
 }
 
 /*--------------- cartas clow-------------------*/
@@ -287,10 +283,9 @@ ul {
   width: 100%;
   max-width: 240px;
   height: 430px;
-  background-color: #9A5C75;
+  background-color: #9a5c75;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-
 }
 
 dl {
@@ -314,7 +309,6 @@ dl {
   height: 100vh;
   background-color: var(--color-fondo);
   display: flex;
-
 }
 
 .imgInfo {
@@ -397,7 +391,7 @@ dialog {
   max-height: 500px;
   width: 100%;
   max-width: 600px;
-  background-color: #9A5C75;
+  background-color: #9a5c75;
   box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   position: fixed;
   top: 50%;
@@ -420,7 +414,7 @@ dialog {
   width: 100%;
   height: 6rem;
   display: flex;
-  background-color: #9A5C75;
+  background-color: #9a5c75;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
@@ -459,7 +453,6 @@ dialog {
   align-items: center;
   width: 90%;
   height: 100%;
-
 }
 
 .chat-message {
@@ -515,7 +508,6 @@ dialog {
   .nav {
     --state-hamburguer: scale(0);
     --state-menu: translate(0);
-
   }
 
   .nav:target {
@@ -549,7 +541,7 @@ dialog {
     align-content: center;
     justify-content: start;
     transform: var(--state-menu);
-    transition: .3s transform;
+    transition: 0.3s transform;
     grid-auto-flow: row;
   }
 
@@ -587,4 +579,138 @@ dialog {
   #password {
     max-width: 20rem;
   }
+}
+
+/* --FOOTER-- */
+
+footer {
+  /* position: fixed; */
+  bottom: 0;
+  background-color: #855065;
+  box-shadow: 5px 0px 15px 4px #919191;
+  width: 100%;
+  height: 70px;
+  z-index: 0;
+}
+
+.footer-contain {
+  /* display: flex;
+  align-items: center; */
+  padding: 0px;
+  /* min-height: calc(100vh - 70px); */
+}
+
+.footer-title {
+  text-align: center;
+  color: #f1e0d9;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  padding-top: 20px;
+}
+
+/* -- VISTA ERROR -- */
+
+.error-container {
+  /* contenedor ppal */
+  height: 480px;
+  min-height: calc(100vh - 70px);
+}
+
+.error-contain {
+  /* img 404 y texto */
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.text-404 {
+  /* solo texto */
+  margin-top: 10px;
+}
+
+.img-404 {
+  filter: drop-shadow(0 0 20px rgb(255, 255, 255));
+  margin-top: 70px;
+  max-width: 500px;
+  height: auto;
+}
+
+.img-error-kero {
+  display: flex;
+  flex-direction: column; /* Cambia la dirección del eje principal a vertical */
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: flex-end; /* Alinea los elementos en la parte inferior del contenedor */
+  max-width: 100%; /* Ajusta el ancho máximo del contenedor */
+  height: 300px; /* Altura deseada para el contenedor */
+  margin-top: -147px;
+}
+
+.kerberos {
+  filter: drop-shadow(0px -30px 30px #ffffff);
+  width: auto; /* Ancho automático para mantener la proporción */
+  height: auto; /* Altura automática para mantener la proporción */
+  max-width: 50%; /* Ajusta el ancho máximo de la imagen */
+  max-height: 60%; /* Ajusta la altura máxima de la imagen */
+  /* align-self: flex-end; */ /* Alinea la imagen en la parte inferior del contenedor */
+}
+
+/* -- VISTA CHAT GRUPAL (cartas clow) -- */
+
+.container-gral-contact {
+  background: #ab7689;
+  width: 40%;
+  min-width: 200px;
+  height: 100vh;
+}
+
+.title-contact {
+  text-align: center;
+  padding-top: 20px;
+  color: #ffffff;
+}
+
+.avatar-container {
+  width: 80px; /* ajusta el tamaño según sea necesario */
+  height: 80px; /* ajusta el tamaño según sea necesario */
+  border-radius: 50%; /* hace que la imagen sea circular */
+  overflow: hidden; /* asegura que la parte fuera del círculo no se muestre */
+  border: 2px solid #ffffff;
+  display: flex;
+}
+
+.img-Avatar {
+  width: 150px;
+  height: 150px;
+}
+
+.contain-card {
+  display: flex;
+  margin: 20px 0 0 20px;
+}
+
+.avatar-name {
+  margin: 20px 0 0 10px;
+}
+
+.name-card {
+  color: #ffffff;
+}
+
+.description-card {
+  color: #ffffff;
+  opacity: 0.7;
+  font-weight: normal;
+}
+
+/* -- VISTA CHAT GRUPAL (Chat grupal) -- */
+
+.chatGrupal-view {
+  /* display: flex; */
+}
+
+.ChatGrupal {
+  /* width: 300px; */
+  background: #855065;
+
+  width: 40%;
+  min-width: 200px;
+  height: 100vh;
 }
