@@ -6,30 +6,28 @@ import { elementDataFilter, renderData, sortData, dangerousDataFilter, computeSt
 
 const Home = () => {
   const homeView = document.createElement("section"); //contenedor principal de vista home
-
+  const content = document.createElement("div");
+  content.className = "contentHome"
   const inicio = document.createElement("div");
+  inicio.id = "Inicio";
   inicio.className = "inicioContainer";
   inicio.innerHTML = `
-  <section class="inicio-section container" id="Inicio">
-    <div class="content-left">
-      <h2 class="content-left-tittle">Sakura: Cazadora Mágica</h2>
-      <p>
+  <div class="contentPortada">
+    <h2 class="title">Sakura: Cazadora Mágica</h2>
+    <p class="description">
       Sakura debe recapturar las Cartas Clow antes de que desencadenen el caos. Las Cartas Clow son un elemento de la serie de manga y anime "Cardcaptor Sakura", creada por CLAMP. En la historia, las Cartas Clow son cartas mágicas creadas por el poderoso mago Clow Reed. Cada carta representa una fuerza mágica única y tiene su propia personalidad y habilidades distintivas.
-      </p>
-    </div>
-    <div class="content-right">
-      <img class="sakura-img"
-          src="./img/sakura-inicio.jpg"
-          alt="fotoInicioSakura" />
-    </div>
-  </section>`;
+    </p>
+  </div>
+    <img class="sakuraImg" src="./img/sakura-inicio.jpg" alt="fotoInicioSakura" />
+  `;
 
   const filterContainer = document.createElement("div");
   filterContainer.className = "filterContainer";
+  filterContainer.id = "Cartas"
   filterContainer.innerHTML = `
-  <h3>Cartas Clow</h3>
+  <h3 class="title cartasClow">Cartas Clow</h3>
   <!-- filtros/botones -->
-  <div class="container-filtros">
+  <div class="cartasContainer">
     <div class="container-elementosFilter">
       <label for="element">Filtra por Elemento:</label>
       <select data-testid="select-filter" name="elementEsencial" id="element">
@@ -69,7 +67,7 @@ const Home = () => {
     </div>
   </div>
   <p id="text"></p>
-  <button data-testid="button-clear" class="reset-btn">Reset</button>`;
+  <button data-testid="button-clear" class="reset-btn button-common">Reset</button>`;
 
   let cardsData = data; // variable de la data original  - variable global
   const cardsInfo = document.createElement("div");   // contenedor de cartas (o elementos HTML) que se generarán dinámicamente.
@@ -78,25 +76,14 @@ const Home = () => {
 
 
   //-------Botón de VerMas----------
-  function eventoBtnCard() {
-    const btns = cardsInfo.querySelectorAll(".card-button");
-    btns.forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        const cardId = btn.getAttribute("data-id");
-        navigateTo("/cardsInfo", cardId);
-      });
-    });
-  }
-  eventoBtnCard();
 
   //--------- filtrado elementos-------
   const selectElement = filterContainer.querySelector('[data-testid="select-filter"]');
   selectElement.addEventListener("change", (event) => {
     const filteredData = elementDataFilter(data, "elementEsencial", event.target.value); //datos que se imprime
     cardsData = filteredData; // asigno nuevo valor de data filtrada
-   // console.log(cardsData);
+    // console.log(cardsData);
     cardsInfo.innerHTML = renderData(cardsData) //  colocándolo dentro de cardsinfo, la data filtrada renderizada.
-    eventoBtnCard();
   });
 
   //---------- filtrado daño-------------
@@ -113,7 +100,6 @@ const Home = () => {
       text.textContent = `El ${computeStats(data).promPeligrosas}% de cartas son peligrosas`
     }
     cardsInfo.innerHTML = renderData(cardsData);// sobrescribir la data filtrada
-    eventoBtnCard();
   });
 
   // ---------- filtro por capturado
@@ -128,7 +114,6 @@ const Home = () => {
     } else {
       text.textContent = `El porcentaje de cartas capturadas por Syaoran es ${filterCapturedPercent.percentSyaoran}%`;
     }
-    eventoBtnCard();
   });
 
   // ------------- ordenar--------  
@@ -138,7 +123,7 @@ const Home = () => {
     console.log(sortedData);
     cardsData = sortedData;
     cardsInfo.innerHTML = renderData(sortedData);
-    eventoBtnCard();
+
   });
 
   //--- boton de reseteo--------
@@ -153,8 +138,10 @@ const Home = () => {
     text.textContent = "";
   });
 
-
-  homeView.append(navBar(), inicio, filterContainer, cardsInfo, Footer());
+  content.appendChild(inicio);
+  content.appendChild(filterContainer)
+  content.appendChild(cardsInfo)
+  homeView.append(navBar(), content, Footer());
 
   return homeView;
 };
