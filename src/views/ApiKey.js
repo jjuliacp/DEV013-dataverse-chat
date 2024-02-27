@@ -1,5 +1,5 @@
 import { navBar } from "../components/Navbar.js";
-
+import { Footer } from "../Components/Footer.js";
 const ApiKey = () => {
   const apiKeyContent = document.createElement("section")
   const contenido = document.createElement("div");
@@ -12,7 +12,7 @@ const ApiKey = () => {
   `;
 
   //title.innerHTML = "Sakura: Cazadora de cartas";
-  apiKeyContent.append(navBar(), contenido);
+  apiKeyContent.append(navBar(), contenido, Footer());
 
   return apiKeyContent;
 };
