@@ -654,18 +654,35 @@ footer {
 
 /* -- VISTA CHAT GRUPAL (cartas clow) -- */
 
-.container-gral-contact {
-  background: #ab7689;
-  width: 40%;
-  min-width: 200px;
-  height: 100vh;
+.view-ChGr {
+  display: flex;
+  margin-top: 0;
+  width: 100vh;
 }
 
-.title-contact {
+.chatGrupal-view {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.container-gral-contact {
+  display: flex;
+  background: #ab7689;
+  min-width: 100vh;
+  justify-content: flex-start;
+}
+
+.container-contact {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+
+/* .title-contact {
   text-align: center;
   padding-top: 20px;
   color: #ffffff;
-}
+} */
 
 .avatar-container {
   width: 80px; /* ajusta el tamaño según sea necesario */
@@ -683,7 +700,7 @@ footer {
 
 .contain-card {
   display: flex;
-  margin: 20px 0 0 20px;
+  margin: 10px 0 0 5px;
 }
 
 .avatar-name {
@@ -702,15 +719,15 @@ footer {
 
 /* -- VISTA CHAT GRUPAL (Chat grupal) -- */
 
-.chatGrupal-view {
+.chatGrupal {
   /* display: flex; */
-}
-
-.ChatGrupal {
-  /* width: 300px; */
   background: #855065;
-
-  width: 40%;
   min-width: 200px;
   height: 100vh;
+  width: 100vh;
+}
+
+.nav-chatGrupal {
+  /* display: flex;
+  justify-content: center; */
 }
