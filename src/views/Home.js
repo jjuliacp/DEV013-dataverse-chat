@@ -1,7 +1,6 @@
 import { navBar } from "../components/Navbar.js";
 import { Footer } from "../Components/Footer.js";
 import data from "../data/dataset.js";
-import { navigateTo } from "../router.js";
 import { elementDataFilter, renderData, sortData, dangerousDataFilter, computeStats, percent } from "../lib/dataFunctions.js";
 
 const Home = () => {
@@ -120,7 +119,7 @@ const Home = () => {
   const sortOrden = filterContainer.querySelector('[data-testid="select-sort"]');
   sortOrden.addEventListener("change", (e) => {
     const sortedData = sortData(cardsData, "name", e.target.value);
-    console.log(sortedData);
+    ///console.log(sortedData);
     cardsData = sortedData;
     cardsInfo.innerHTML = renderData(sortedData);
 
