@@ -13,7 +13,7 @@ import ChatIndividual from "./views/ChatIndividual.js";
 const routes = {
   "/": { component: Home, title: "Sakura | Home" },
   "/error": { component: Error, title: "Sakura | Error 404" },
-  "/ChatGrupal": { component: ChatGrupal, title: "Sakura | Chat Grupal" },
+  "/chatGrupal": { component: ChatGrupal, title: "Sakura | Chat Grupal" },
   "/cardsInfo": { component: CardsInfo, title: "Sakura | Descripción" },
   "/apikey": { component: ApiKey, title: "Sakura | Api Key" },
   "/chatIndividual": {

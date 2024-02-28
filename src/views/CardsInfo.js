@@ -23,7 +23,6 @@ const CardsInfo = (card) => {
                 <img id="img" class="img-chat" src=${carta.imageUrl} alt=${carta.name} />          
                 <h2 class="chat-with">${carta.name} </h2>
                 <h2 class="chat-with">${carta.shortDescription}</h2>
-
             </div>
             <div class="chat-history">
                 <div class="chat-message">
