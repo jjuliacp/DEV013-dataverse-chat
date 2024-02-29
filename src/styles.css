@@ -11,11 +11,13 @@
   /* fondo2 general */
   --color-kero: #ff9232;
   /* color kerberos */
-  --color-gradient: linear-gradient(90deg,
-      rgba(241, 224, 217, 1) 15%,
-      rgba(227, 170, 185, 1) 39%,
-      rgba(241, 224, 217, 1) 58%,
-      rgba(227, 170, 185, 1) 79%);
+  --color-gradient: linear-gradient(
+    90deg,
+    rgba(241, 224, 217, 1) 15%,
+    rgba(227, 170, 185, 1) 39%,
+    rgba(241, 224, 217, 1) 58%,
+    rgba(227, 170, 185, 1) 79%
+  );
 }
 
 * {
@@ -490,6 +492,7 @@ dialog {
   padding: 1rem;
   border-radius: 2rem;
   margin-bottom: 1rem;
+  box-shadow: 1px 0px 8px 5px rgba(0, 0, 0, 0.1);
 }
 
 .containerSend {
@@ -512,6 +515,228 @@ dialog {
 .send {
   width: 2rem;
   height: 2rem;
+}
+
+/* --FOOTER-- */
+
+footer {
+  background-color: #9a5c75;
+  width: 100%;
+  height: 4rem;
+}
+
+.footer-title {
+  text-align: center;
+  color: #f1e0d9;
+  padding-top: 20px;
+}
+
+/* -- VISTA ERROR -- */
+
+.error-container {
+  /* contenedor ppal */
+  height: 91vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+}
+
+.text-404 {
+  /* solo texto */
+  font-size: 2rem;
+  text-transform: lowercase;
+  color: #855065;
+}
+
+.img-404 {
+  filter: drop-shadow(0 0 20px rgb(255, 255, 255));
+  margin-top: 70px;
+  max-width: 500px;
+  height: auto;
+}
+
+.kerberos {
+  filter: drop-shadow(0px -10px 30px #ffffff);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* -- VISTA CHAT GRUPAL (cartas clow) -- */
+
+.viewChatGrupal {
+  display: flex;
+  height: 100vh;
+  background-color: var(--color-fondo);
+  justify-content: space-between;
+}
+
+.list-ChGr {
+  background-color: #ab7689;
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-contact-ChGr {
+  /* background-color: #ab7689; */
+  /*  width: 30rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: auto;
+  box-shadow: 0px 4px 12px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title-contact {
+  color: #855065;
+  text-align: center;
+  background: #dcb6c6;
+  padding: 30.5px;
+}
+
+.img-icono {
+  display: none;
+}
+
+.container-contact {
+  margin-left: 20px;
+}
+
+.avatar-container {
+  display: flex;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  /* asegura que la parte fuera del círculo no se muestre */
+  border: 1px solid #ffffff;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+}
+
+.img-Avatar {
+  width: 100%;
+  height: 175px;
+}
+
+.contain-card {
+  display: flex;
+  margin: 10px 0 0 5px;
+}
+
+.avatar-name {
+  margin: 20px 0 0 10px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.name-card {
+  color: #ffffff;
+}
+
+.description-card {
+  color: #ffffff;
+  opacity: 0.7;
+  font-weight: normal;
+}
+
+/* .nav-icon {
+  margin: -20px 0px 20px 35px;
+  width: 20px;
+} */
+
+/* -- VISTA CHAT GRUPAL (Chat grupal) -- */
+
+.chatGrupal {
+  display: flex;
+  background: #855065;
+  min-width: 200px;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+}
+
+.nav-chatGrupal {
+  display: flex;
+  background: #dcb6c6;
+  padding: 20px;
+  box-shadow: -1px 7px 12px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title-chatGrupal {
+  color: #855065;
+  margin-left: 54px;
+  margin-top: 8px;
+}
+
+.chatG-historial {
+  margin: 10px 10px 0 10px;
+  overflow-y: auto;
+  padding: 6rem;
+  height: 40%;
+}
+
+.window-chat {
+  display: flex;
+  /* height: 100%; */
+  border-radius: 0 0 1rem 1rem;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  margin-top: 100px;
+}
+
+.GrupalSend {
+  margin-bottom: 40px;
+  background-color: #bb166287;
+}
+
+/* Media Query */
+
+@media (max-width: 400px) {
+  .avatar-container {
+    width: 60px; /* Reduzco el tamaño del contenedor de la imagen */
+    height: 60px;
+  }
+
+  .avatar-name {
+    margin-top: 5px; /* Reduzco el espacio entre la imagen y el nombre */
+    font-size: 12px; /* Reduzco el tamaño del texto */
+  }
+
+  .description-card {
+    display: none;
+  }
+
+  .contain-card {
+    /* display: flex; */
+    text-align: center;
+    margin: 5px 0 0 0;
+    flex-direction: column;
+  }
+
+  .list-ChGr {
+    width: 6rem;
+  }
+
+  .list-contact-ChGr {
+    width: 8rem;
+  }
+
+  .title-contact {
+    display: none;
+  }
+
+  .img-icono {
+    display: block;
+    margin: 5px 0 10px 25px;
+    width: 60px;
+  }
+
+  .openIcon {
+    margin-left: 146px;
+  }
 }
 
 @media screen and (min-width: 600px) {
@@ -544,7 +769,6 @@ dialog {
     width: 100%;
     max-width: 42rem;
   }
-
 }
 
 @media screen and (max-width: 600px) {
@@ -637,126 +861,4 @@ dialog {
   .error-container {
     padding-top: 10%;
   }
-
-}
-
-/* --FOOTER-- */
-
-footer {
-  background-color: #9a5c75;
-  width: 100%;
-  height: 4rem;
-}
-
-
-.footer-title {
-  text-align: center;
-  color: #f1e0d9;
-  padding-top: 20px;
-
-}
-
-/* -- VISTA ERROR -- */
-
-.error-container {
-  /* contenedor ppal */
-  height: 91vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5rem;
-}
-
-
-.text-404 {
-  /* solo texto */
-  font-size: 2rem;
-  text-transform: lowercase;
-  color: #855065;
-}
-
-.img-404 {
-  filter: drop-shadow(0 0 20px rgb(255, 255, 255));
-  margin-top: 70px;
-  max-width: 500px;
-  height: auto;
-}
-
-
-.kerberos {
-  filter: drop-shadow(0px -10px 30px #ffffff);
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-
-}
-
-/* -- VISTA CHAT GRUPAL (cartas clow) -- */
-
-.view-ChGr {
-  display: flex;
-  margin-top: 0;
-  width: 100vh;
-}
-
-.chatGrupal-view {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.container-gral-contact {
-  display: flex;
-  background: #ab7689;
-  min-width: 100vh;
-  justify-content: flex-start;
-}
-
-.container-contact {
-  display: flex;
-  justify-content: flex-start;
-  margin-left: 20px;
-}
-
-.avatar-container {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid #ffffff;
-  display: flex;
-}
-
-.img-Avatar {
-  width: 150px;
-  height: 150px;
-}
-
-.contain-card {
-  display: flex;
-  margin: 10px 0 0 5px;
-}
-
-.avatar-name {
-  margin: 20px 0 0 10px;
-}
-
-.name-card {
-  color: #ffffff;
-}
-
-.description-card {
-  color: #ffffff;
-  opacity: 0.7;
-  font-weight: normal;
-}
-
-/* -- VISTA CHAT GRUPAL (Chat grupal) -- */
-
-.chatGrupal {
-  /* display: flex; */
-  background: #855065;
-  min-width: 200px;
-  height: 100vh;
-  width: 100vh;
 }
