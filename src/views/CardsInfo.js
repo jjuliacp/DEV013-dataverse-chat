@@ -1,13 +1,13 @@
-import { Footer } from '../Components/Footer.js';
-import { navBar } from '../components/Navbar.js';
-import data from '../data/dataset.js';
+import { Footer } from "../Components/Footer.js";
+import { navBar } from "../components/Navbar.js";
+import data from "../data/dataset.js";
 const CardsInfo = (card) => {
-    const infoCarta = document.createElement("section");
-    const carta = data.find(x => x.id === card.id)
-    //console.log(card.id);
-    const cardElement = document.createElement("div");
-    cardElement.className = "content containerChat"
-    cardElement.innerHTML = `
+  const infoCarta = document.createElement("section");
+  const carta = data.find((x) => x.id === card.id);
+  //console.log(card.id);
+  const cardElement = document.createElement("div");
+  cardElement.className = "content containerChat";
+  cardElement.innerHTML = `
         <div class="mainInfoCard">
             <img id="img" class="imgInfo" src=${carta.imageUrl} alt=${carta.name} />
             <div class="container-text">
@@ -29,7 +29,7 @@ const CardsInfo = (card) => {
                 <div class="chat-message">
                     <textarea name="message-send" id="message-send" placeholder="type your message"> </textarea>
                     <button class="containerSend btnSend">    
-                    <img class="send" src="./img/send-2-svgrepo-com (1).svg" alt="iconSend" />
+                    <img class="send" src="./img/icono3.svg" alt="iconSend" />
                     </button>            
                 </div>
             </div>
@@ -37,13 +37,10 @@ const CardsInfo = (card) => {
 
     `;
 
-  
+  infoCarta.append(navBar(), cardElement, Footer());
+  //title.innerHTML = "Sakura: Cazadora de cartas";
 
-    infoCarta.append(navBar(), cardElement, Footer());
-    //title.innerHTML = "Sakura: Cazadora de cartas";
-
-    return infoCarta;
+  return infoCarta;
 };
-
 
 export default CardsInfo;
