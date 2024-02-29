@@ -1,25 +1,20 @@
 // En este archivo definirás tus rutas e importarás los componentes que vas a renderizar.
 
-import { onURLChange, setRootEl, setRoutes, queryStringToObject } from "./router.js";
+import { onURLChange, setRootEl, setRoutes } from "./router.js";
 import Home from "./views/Home.js";
-import Error from "./views/Error.js"
+import Error from "./views/Error.js";
 import ChatGrupal from "./views/ChatGrupal.js";
 import CardsInfo from "./views/CardsInfo.js";
 import ApiKey from "./views/ApiKey.js";
-import ChatIndividual from "./views/ChatIndividual.js";
 
 //Ejemplo de definición de rutas:
 
 const routes = {
   "/": { component: Home, title: "Sakura | Home" },
   "/error": { component: Error, title: "Sakura | Error 404" },
-  "/ChatGrupal": { component: ChatGrupal, title: "Sakura | Chat Grupal" },
+  "/chatGrupal": { component: ChatGrupal, title: "Sakura | Chat Grupal" },
   "/cardsInfo": { component: CardsInfo, title: "Sakura | Descripción" },
   "/apikey": { component: ApiKey, title: "Sakura | Api Key" },
-  "/chatIndividual": {
-    component: ChatIndividual,
-    title: "Sakura | Chat individual",
-  },
 };
 
 const viewContainer = document.getElementById("root");
@@ -32,8 +27,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
   onURLChange(event.target.location);
 });
 
-window.addEventListener("popstate", (e) => {  // para retroceder y avanzar?? 
-  onURLChange(location)
+window.addEventListener("popstate", () => {
+  // para retroceder y avanzar??
+  onURLChange(location);
 });
 
 /*

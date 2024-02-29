@@ -219,6 +219,7 @@ select[data-testid="select-estadistic"] {
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   grid-gap: 1.25rem;
   font-weight: bold;
+  margin-bottom: 2rem;
 }
 
 .card-front {
@@ -377,14 +378,18 @@ svg {
 }
 
 /*-----------css de view APIKEY ------------------ */
+.apiview {
+  height: 93vh;
+}
+
 .apikeyContent {
-  margin-top: 10%;
   width: 100%;
   height: 38rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  justify-content: center;
 }
 
 #password {
@@ -435,6 +440,7 @@ dialog {
   justify-content: center;
   border-radius: 1rem 1rem 0 0;
   border: solid 2px #855065;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .img-chat {
@@ -467,6 +473,7 @@ dialog {
   background-color: #855065;
   border-radius: 0 0 1rem 1rem;
   border: solid 2px #855065;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .chat-message {
@@ -510,6 +517,228 @@ dialog {
   height: 2rem;
 }
 
+/* --FOOTER-- */
+
+footer {
+  background-color: #9a5c75;
+  width: 100%;
+  height: 4rem;
+}
+
+.footer-title {
+  text-align: center;
+  color: #f1e0d9;
+  padding-top: 20px;
+}
+
+/* -- VISTA ERROR -- */
+
+.error-container {
+  /* contenedor ppal */
+  height: 91vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+}
+
+.text-404 {
+  /* solo texto */
+  font-size: 2rem;
+  text-transform: lowercase;
+  color: #855065;
+}
+
+.img-404 {
+  filter: drop-shadow(0 0 20px rgb(255, 255, 255));
+  margin-top: 70px;
+  max-width: 500px;
+  height: auto;
+}
+
+.kerberos {
+  filter: drop-shadow(0px -10px 30px #ffffff);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* -- VISTA CHAT GRUPAL (cartas clow) -- */
+
+.viewChatGrupal {
+  display: flex;
+  height: 100vh;
+  background-color: var(--color-fondo);
+  justify-content: space-between;
+}
+
+.list-ChGr {
+  background-color: #ab7689;
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-contact-ChGr {
+  /* background-color: #ab7689; */
+  /*  width: 30rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: auto;
+  box-shadow: 0px 4px 12px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title-contact {
+  color: #855065;
+  text-align: center;
+  background: #dcb6c6;
+  padding: 30.5px;
+}
+
+.img-icono {
+  display: none;
+}
+
+.container-contact {
+  margin-left: 20px;
+}
+
+.avatar-container {
+  display: flex;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  /* asegura que la parte fuera del círculo no se muestre */
+  border: 1px solid #ffffff;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+}
+
+.img-Avatar {
+  width: 100%;
+  height: 175px;
+}
+
+.contain-card {
+  display: flex;
+  margin: 10px 0 0 5px;
+}
+
+.avatar-name {
+  margin: 20px 0 0 10px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.name-card {
+  color: #ffffff;
+}
+
+.description-card {
+  color: #ffffff;
+  opacity: 0.7;
+  font-weight: normal;
+}
+
+/* .nav-icon {
+  margin: -20px 0px 20px 35px;
+  width: 20px;
+} */
+
+/* -- VISTA CHAT GRUPAL (Chat grupal) -- */
+
+.chatGrupal {
+  display: flex;
+  background: #855065;
+  min-width: 200px;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+}
+
+.nav-chatGrupal {
+  display: flex;
+  background: #dcb6c6;
+  padding: 20px;
+  box-shadow: -1px 7px 12px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title-chatGrupal {
+  color: #855065;
+  margin-left: 54px;
+  margin-top: 8px;
+}
+
+.chatG-historial {
+  margin: 10px 10px 0 10px;
+  overflow-y: auto;
+  padding: 6rem;
+  height: 40%;
+}
+
+.window-chat {
+  display: flex;
+  /* height: 100%; */
+  border-radius: 0 0 1rem 1rem;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  margin-top: 100px;
+}
+
+.GrupalSend {
+  margin-bottom: 40px;
+  background-color: #bb166287;
+}
+
+/* Media Query */
+
+@media (max-width: 400px) {
+  .avatar-container {
+    width: 60px; /* Reduzco el tamaño del contenedor de la imagen */
+    height: 60px;
+  }
+
+  .avatar-name {
+    margin-top: 5px; /* Reduzco el espacio entre la imagen y el nombre */
+    font-size: 12px; /* Reduzco el tamaño del texto */
+  }
+
+  .description-card {
+    display: none;
+  }
+
+  .contain-card {
+    /* display: flex; */
+    text-align: center;
+    margin: 5px 0 0 0;
+    flex-direction: column;
+  }
+
+  .list-ChGr {
+    width: 6rem;
+  }
+
+  .list-contact-ChGr {
+    width: 8rem;
+  }
+
+  .title-contact {
+    display: none;
+  }
+
+  .img-icono {
+    display: block;
+    margin: 5px 0 10px 25px;
+    width: 60px;
+  }
+
+  .openIcon {
+    margin-left: 146px;
+  }
+}
+
 @media screen and (min-width: 600px) {
   body {
     width: 100%;
@@ -534,6 +763,11 @@ dialog {
 
   .contentHome {
     margin-top: 60px;
+  }
+
+  .kerberos {
+    width: 100%;
+    max-width: 42rem;
   }
 }
 
@@ -562,11 +796,13 @@ dialog {
   .nav-item a {
     font-size: 1rem;
   }
+
   .content {
     height: auto;
     padding: 2rem;
     box-sizing: border-box;
   }
+
   .containerChat {
     flex-direction: column;
     gap: 1rem;
@@ -615,264 +851,14 @@ dialog {
   #password {
     max-width: 20rem;
   }
-}
 
-/* --FOOTER-- */
-
-footer {
-  /* position: fixed; */
-  bottom: 0;
-  background-color: #855065;
-  box-shadow: 5px 0px 15px 4px #919191;
-  width: 100%;
-  height: 70px;
-  z-index: 0;
-}
-
-.footer-contain {
-  /* display: flex;
-  align-items: center; */
-  padding: 0px;
-  /* min-height: calc(100vh - 70px); */
-}
-
-.footer-title {
-  text-align: center;
-  color: #f1e0d9;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  padding-top: 20px;
-}
-
-/* -- VISTA ERROR -- */
-
-.error-container {
-  /* contenedor ppal */
-  height: 480px;
-  min-height: calc(100vh - 70px);
-}
-
-.error-contain {
-  /* img 404 y texto */
-  text-align: center;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.text-404 {
-  /* solo texto */
-  margin-top: 10px;
-}
-
-.img-404 {
-  filter: drop-shadow(0 0 20px rgb(255, 255, 255));
-  margin-top: 70px;
-  max-width: 500px;
-  height: auto;
-}
-
-.img-error-kero {
-  display: flex;
-  flex-direction: column;
-  /* Cambia la dirección del eje principal a vertical */
-  align-items: center;
-  /* Centra los elementos horizontalmente */
-  justify-content: flex-end;
-  /* Alinea los elementos en la parte inferior del contenedor */
-  max-width: 100%;
-  /* Ajusta el ancho máximo del contenedor */
-  height: 300px;
-  /* Altura deseada para el contenedor */
-  margin-top: -147px;
-}
-
-.kerberos {
-  filter: drop-shadow(0px -30px 30px #ffffff);
-  width: auto;
-  /* Ancho automático para mantener la proporción */
-  height: auto;
-  /* Altura automática para mantener la proporción */
-  max-width: 50%;
-  /* Ajusta el ancho máximo de la imagen */
-  max-height: 60%;
-  /* Ajusta la altura máxima de la imagen */
-  /* align-self: flex-end; */
-  /* Alinea la imagen en la parte inferior del contenedor */
-}
-
-/* -- VISTA CHAT GRUPAL (cartas clow) -- */
-
-.viewChatGrupal {
-  display: flex;
-  height: 100vh;
-  background-color: var(--color-fondo);
-  justify-content: space-between;
-}
-
-.list-ChGr {
-  background-color: #ab7689;
-  width: 30rem;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0px 4px 12px 6px rgba(0, 0, 0, 0.1);
-}
-
-.list-contact-ChGr {
-  /* background-color: #ab7689; */
-  /*  width: 30rem; */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  overflow-y: auto;
-}
-
-.title-contact {
-  color: #ffffff;
-  text-align: center;
-  margin: 18px 0 18px 0;
-}
-
-.img-icono {
-  display: none;
-}
-
-.container-contact {
-  margin-left: 20px;
-}
-
-.avatar-container {
-  display: flex;
-  width: 80px;
-  /* ajusta el tamaño según sea necesario */
-  height: 80px;
-  /* ajusta el tamaño según sea necesario */
-  border-radius: 50%;
-  /* hace que la imagen sea circular */
-  overflow: hidden;
-  /* asegura que la parte fuera del círculo no se muestre */
-  border: 1px solid #ffffff;
-  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
-}
-
-.img-Avatar {
-  width: 100%;
-  height: 175px;
-}
-
-.contain-card {
-  display: flex;
-  margin: 10px 0 0 5px;
-}
-
-.avatar-name {
-  margin: 20px 0 0 10px;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-.name-card {
-  color: #ffffff;
-}
-
-.description-card {
-  color: #ffffff;
-  opacity: 0.7;
-  font-weight: normal;
-}
-
-/* .nav-icon {
-  margin: -20px 0px 20px 35px;
-  width: 20px;
-} */
-
-@media (max-width: 400px) {
-  .avatar-container {
-    width: 60px; /* Reduzco el tamaño del contenedor de la imagen */
-    height: 60px;
+  .kerberos,
+  .img-404 {
+    width: 95%;
+    top: 28.5rem;
   }
 
-  .avatar-name {
-    margin-top: 5px; /* Reduzco el espacio entre la imagen y el nombre */
-    font-size: 12px; /* Reduzco el tamaño del texto */
+  .error-container {
+    padding-top: 10%;
   }
-
-  .description-card {
-    display: none;
-  }
-
-  .contain-card {
-    /* display: flex; */
-    text-align: center;
-    margin: 5px 0 0 0;
-    flex-direction: column;
-  }
-
-  .list-ChGr {
-    width: 6rem;
-  }
-
-  .list-contact-ChGr {
-    width: 8rem;
-  }
-
-  .title-contact {
-    display: none;
-  }
-
-  .img-icono {
-    display: block;
-    margin: 5px 0 10px 25px;
-    width: 60px;
-  }
-
-  .openIcon {
-    margin-left: 146px;
-  }
-}
-
-/* -- VISTA CHAT GRUPAL (Chat grupal) -- */
-
-.chatGrupal {
-  display: flex;
-  background: #855065;
-  min-width: 200px;
-  height: 100vh;
-  width: 100%;
-  flex-direction: column;
-}
-
-.nav-chatGrupal {
-  display: flex;
-  background: #dcb6c6;
-  padding: 8px;
-  box-shadow: -1px 7px 12px 6px rgba(0, 0, 0, 0.1);
-}
-
-.title-chatGrupal {
-  color: #855065;
-  margin-left: 54px;
-  margin-top: 8px;
-}
-
-.back {
-  /* margin-left: -150px; */
-}
-
-.chatG-historial {
-  margin: 10px 10px 0 10px;
-  overflow-y: auto;
-  padding: 6rem;
-  height: 40%;
-}
-
-.window-chat {
-  display: flex;
-  /* height: 100%; */
-  border-radius: 0 0 1rem 1rem;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: flex-end;
-  margin-top: 10px;
-}
-
-.GrupalSend {
-  margin-bottom: 40px;
-  background-color: #bb166287;
 }

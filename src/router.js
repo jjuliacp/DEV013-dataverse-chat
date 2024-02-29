@@ -17,7 +17,7 @@ export const setRoutes = (routes) => {
 };
 
 export const queryStringToObject = (queryString) => {
-  console.log(queryString);
+  //console.log(queryString);
   //console.log("URL changed:", location.pathname, location.search)
   const params = new URLSearchParams(queryString);
   const object = Object.fromEntries(params);
@@ -31,7 +31,7 @@ const renderView = (pathname, props = {}) => {
   const root = rootEl;
   root.innerHTML = "";
   // find the correct view in ROUTES for the pathname
-//  console.log(ROUTES[pathname]); 
+  //  console.log(ROUTES[pathname]); 
   if (ROUTES[pathname]) {
     const { component, title } = ROUTES[pathname];
     //console.log(ROUTES[pathname]);
@@ -44,7 +44,7 @@ const renderView = (pathname, props = {}) => {
     root.appendChild(template); // add the view element to the DOM root element
   } else {
     // in case not found render the error view
-    const { component, title } = ROUTES["/error"];
+    const { component } = ROUTES["/error"];
     root.appendChild(component(props));
   }
 
@@ -53,9 +53,9 @@ const renderView = (pathname, props = {}) => {
 
 export const navigateTo = (pathname, props = {}) => {
   // update window history with pushState
-  console.log(pathname)
+  //console.log(pathname)
   history.pushState({}, "", pathname);
- // console.log(window.history);
+  // console.log(window.history);
   renderView(pathname, props);  // render the view with the pathname and props
 };
 
@@ -63,7 +63,7 @@ export const onURLChange = (location) => {
   // parse the location for the pathname and search params
   // convert the search params to an object
   const search = location.search;
-  const props = queryStringToObject(search) 
+  const props = queryStringToObject(search)
   //console.log("Props:", props);
-   renderView(location.pathname, props);// renderizar la vista con los parametros 
+  renderView(location.pathname, props);// renderizar la vista con los parametros 
 };
