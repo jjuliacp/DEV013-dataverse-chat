@@ -1,6 +1,7 @@
 import { Footer } from "../Components/Footer.js";
 import { navBar } from "../components/Navbar.js";
 import data from "../data/dataset.js";
+import { communicateWithOpenAI } from "../lib/openAIApi.js";
 const CardsInfo = (card) => {
   const infoCarta = document.createElement("section");
   const carta = data.find((x) => x.id === card.id);
@@ -25,6 +26,23 @@ const CardsInfo = (card) => {
                 <h2 class="chat-with">${carta.shortDescription}</h2>
             </div>
             <div class="chat-history">
+                <div id="inactive">
+                  <div class="message-data">
+                    <span class="message-data-name">Tu</span> 
+                  </div>
+                  <div class="message my-message">
+                  <p id="output"></p>
+                  </div>
+                </div>
+              <div class="clearfix"  id="inactive">
+                <div class="message-data align-right">
+                  <span class="message-data-name" >${carta.name}</span></i> 
+                </div>
+                <div class="message other-message float-right ">
+                <p id="received"></p>
+                </div>
+               </div>
+
                 <div class="chat-message">
                     <textarea name="message-send" id="message-send" placeholder="type your message"> </textarea>
                     <button class="containerSend btnSend">    
@@ -35,6 +53,29 @@ const CardsInfo = (card) => {
         </div>
 
     `;
+
+
+const btnChat = cardElement.querySelector('.send')
+
+
+
+
+
+btnChat.addEventListener('click', async () =>{
+  const message = cardElement.querySelector('#message-send');
+  const received = cardElement.querySelector('#received')
+  const output = cardElement.querySelector('#output')
+  const contenedores = cardElement.querySelectorAll('#inactive')
+    if(!message.value)
+    return
+    contenedores.forEach(contenedor => {
+      contenedor.style.display = 'block';
+  });
+  output.innerHTML = message.value;
+   const response =  await communicateWithOpenAI(message.value, card)// funcion asicronica
+   received.innerHTML = response.choices[0].message.content
+    //console.log(received);
+}) 
 
   infoCarta.append(navBar(), cardElement, Footer());
   //title.innerHTML = "Sakura: Cazadora de cartas";

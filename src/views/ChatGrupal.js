@@ -1,6 +1,6 @@
 import data from "../data/dataset.js";
 /* import { renderData } from "../lib/dataFunctions.js"; */
-
+import { communicateWithOpenAI } from "../lib/openAIApi.js";
 const ChatGrupal = () => {
   const chatG = document.createElement("section");
   chatG.className = "viewChatGrupal";
@@ -16,7 +16,11 @@ const ChatGrupal = () => {
           <h3 class="title-chatGrupal">Chat Grupal</h3>
           <img id="ico3" class="img-icono openIcon" src="./img/person-3-fill-svgrepo-com(2).svg" alt=icono-3 />
         </div>
-        <div class="chatG-historial"></div>
+        <div class="chatG-historial">
+        <div id="output" class="response"></div>
+        <div id="received"></div>
+
+        </div>
         <div class="window-chat">
           <textarea name="message-send" id="message-send" placeholder="type your message"> </textarea>
           <button class="containerSend GrupalSend">    
@@ -65,8 +69,10 @@ const ChatGrupal = () => {
   const iconClose = chatG.querySelector("#ico2");
   iconClose.addEventListener("click", () => {
     // Verificar si el ancho de la pantalla es menor que 400px
+    
     if (window.innerWidth < 400) {
       // Ocultar la ventana o div de clase "list-ChGr"
+      console.log(window.innerWidth)
       chatGContact.style.display = "none";
     }
   });
@@ -75,12 +81,30 @@ const ChatGrupal = () => {
   const iconOpen = chatG.querySelector("#ico3");
   iconOpen.addEventListener("click", () => {
     // Verificar si el ancho de la pantalla es menor que 400px
+    
     if (window.innerWidth < 400) {
       // Mostrar la ventana o div de clase "list-ChGr"
       chatGContact.style.display = "block";
     }
   });
 
+  
+  const btnChat = chatGrupalText.querySelector('.send')
+
+  btnChat.addEventListener('click', async () =>{
+    const message = chatGrupalText.querySelector('#message-send');
+    const received = chatGrupalText.querySelector('#received')
+    const output = chatGrupalText.querySelector('#output')
+    output.innerHTML = message.value;
+    data.forEach( async(carta) => {
+      const response = await communicateWithOpenAI(message.value, carta);
+      const responseMessage = response.choices[0].message.content;
+      received.innerHTML += `<p class="response">${carta.name}: ${responseMessage}</p>`;
+    })
+
+    // Limpiar el área de mensaje
+    message.value = '';
+   }) 
   return chatG;
 };
 

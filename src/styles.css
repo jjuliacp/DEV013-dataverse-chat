@@ -571,6 +571,8 @@ footer {
   height: 100vh;
   background-color: var(--color-fondo);
   justify-content: space-between;
+  overflow: scroll;
+
 }
 
 .list-ChGr {
@@ -640,11 +642,65 @@ footer {
   opacity: 0.7;
   font-weight: normal;
 }
+ /* -- HISTORIA CHATTTTTTTTTTTTTTTTT -- */
+ .response{
+  color: snow;
+ }
+#inactive{
+  display: none;
+}
+ .message-data {
+  margin-bottom: 15px;
+  color: rgb(0, 0, 0);
 
-/* .nav-icon {
-  margin: -20px 0px 20px 35px;
-  width: 20px;
-} */
+}
+
+.message-data-time {
+  color: lighten(gray 8%);
+  padding-left: 6px;
+}
+.message {      
+  color: white;
+  padding: 18px 20px;
+  line-height: 26px;
+  font-size: 16px;
+  border-radius: 7px;
+  margin-bottom: 30px;
+  width: 90%;
+
+}
+.message-data-name{
+  color: snow;
+}
+.message:after {
+  bottom: 100%;
+  left: 7%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-bottom-color: rgb(223, 255, 223);
+  border-width: 10px;
+  margin-left: -10px;
+}
+
+.my-message {
+  background: snow;
+}
+
+.other-message {
+  background: rgb(219, 219, 255);
+  
+  &:after {
+    border-bottom-color: blue;
+    left: 93%;
+  }
+}
+
+
+
 
 /* -- VISTA CHAT GRUPAL (Chat grupal) -- */
 
@@ -739,7 +795,8 @@ footer {
   }
 }
 
-@media screen and (min-width: 600px) {
+@media screen  and (min-width:1000px) and (max-width: 1980px){
+  /* Tus estilos para pantallas entre 1000px y 1980px van aquí */
   body {
     width: 100%;
   }
@@ -751,6 +808,7 @@ footer {
   .nav {
     --state-hamburguer: scale(0);
     --state-menu: translate(0);
+
   }
 
   .nav:target {
@@ -760,7 +818,9 @@ footer {
   .nav-item a {
     font-size: 1rem;
   }
-
+  .containerChat{
+    margin-top: 26px;
+  }
   .contentHome {
     margin-top: 60px;
   }
@@ -769,6 +829,7 @@ footer {
     width: 100%;
     max-width: 42rem;
   }
+  
 }
 
 @media screen and (max-width: 600px) {
@@ -862,3 +923,4 @@ footer {
     padding-top: 10%;
   }
 }
+ 

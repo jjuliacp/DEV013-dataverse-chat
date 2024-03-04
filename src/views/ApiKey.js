@@ -2,6 +2,8 @@ import { navBar } from "../components/Navbar.js";
 import { Footer } from "../Components/Footer.js";
 import {setApiKey } from "../lib/apiKey.js";
 
+
+
 const ApiKey = () => {
   const apiKeyContent = document.createElement("section")
   const contenido = document.createElement("div");
@@ -24,6 +26,7 @@ const ApiKey = () => {
       const passwordValue = inputApi.value
       saveApi.value='Delete';
       setApiKey(passwordValue);
+    
       //console.log('Valor del campo de contraseña:', passwordValue);
     } else{
       inputApi.value='';
