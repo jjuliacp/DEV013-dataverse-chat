@@ -1,13 +1,11 @@
 import { navBar } from "../components/Navbar.js";
 import { Footer } from "../Components/Footer.js";
-import {setApiKey } from "../lib/apiKey.js";
-
-
+import { setApiKey } from "../lib/apiKey.js";
 
 const ApiKey = () => {
-  const apiKeyContent = document.createElement("section")
+  const apiKeyContent = document.createElement("section");
   const contenido = document.createElement("div");
-  contenido.className ="content apiview"
+  contenido.className = "content apiview";
   contenido.innerHTML = `
   <div class="apikeyContent">
   <h1 class="title">API KEY ADMIN</h1>
@@ -19,22 +17,22 @@ const ApiKey = () => {
   apiKeyContent.append(navBar(), contenido, Footer());
 
   const inputApi = contenido.querySelector("input[type='password']");
-  const saveApi = contenido.querySelector('.btnChat');
+  const saveApi = contenido.querySelector(".btnChat");
 
-  saveApi.addEventListener('click', function(){
-    if (saveApi.value === 'Save'){
-      const passwordValue = inputApi.value
-      saveApi.value='Delete';
+  saveApi.addEventListener("click", function () {
+    //guardamos la Api al hacer click en save
+    if (saveApi.value === "Save") {
+      const passwordValue = inputApi.value;
+      saveApi.value = "Delete"; //cambiamos su valor a "Delete" al hacer click
       setApiKey(passwordValue);
-    
-      //console.log('Valor del campo de contraseña:', passwordValue);
-    } else{
-      inputApi.value='';
-      saveApi.value='Save';
-      localStorage.removeItem('apikey')    
+
+      //console.log("Valor del campo de contraseña:", passwordValue);
+    } else {
+      inputApi.value = "";
+      saveApi.value = "Save";
+      localStorage.removeItem("apikey");
     }
-  
-  })
+  });
 
   return apiKeyContent;
 };

@@ -54,28 +54,22 @@ const CardsInfo = (card) => {
 
     `;
 
+  const btnChat = cardElement.querySelector(".send");
 
-const btnChat = cardElement.querySelector('.send')
-
-
-
-
-
-btnChat.addEventListener('click', async () =>{
-  const message = cardElement.querySelector('#message-send');
-  const received = cardElement.querySelector('#received')
-  const output = cardElement.querySelector('#output')
-  const contenedores = cardElement.querySelectorAll('#inactive')
-    if(!message.value)
-    return
-    contenedores.forEach(contenedor => {
-      contenedor.style.display = 'block';
-  });
-  output.innerHTML = message.value;
-   const response =  await communicateWithOpenAI(message.value, card)// funcion asicronica
-   received.innerHTML = response.choices[0].message.content
+  btnChat.addEventListener("click", async () => {
+    const message = cardElement.querySelector("#message-send");
+    const received = cardElement.querySelector("#received");
+    const output = cardElement.querySelector("#output");
+    const contenedores = cardElement.querySelectorAll("#inactive");
+    if (!message.value) return;
+    contenedores.forEach((contenedor) => {
+      contenedor.style.display = "block";
+    });
+    output.innerHTML = message.value;
+    const response = await communicateWithOpenAI(message.value, card); // funcion asicronica
+    received.innerHTML = response.choices[0].message.content;
     //console.log(received);
-}) 
+  });
 
   infoCarta.append(navBar(), cardElement, Footer());
   //title.innerHTML = "Sakura: Cazadora de cartas";
