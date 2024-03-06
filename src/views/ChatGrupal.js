@@ -90,15 +90,20 @@ const ChatGrupal = () => {
 
   const btnChat = chatGrupalText.querySelector(".send");
 
-  btnChat.addEventListener("click", async () => {
+  btnChat.addEventListener("click", () => {
     const message = chatGrupalText.querySelector("#message-send");
     const received = chatGrupalText.querySelector("#received");
     const output = chatGrupalText.querySelector("#output");
     output.innerHTML = message.value;
-    data.forEach(async (carta) => {
-      const response = await communicateWithOpenAI(message.value, carta);
-      const responseMessage = response.choices[0].message.content;
-      received.innerHTML += `<p class="response">${carta.name}: ${responseMessage}</p>`;
+    data.forEach((carta) => {
+      communicateWithOpenAI(message.value, carta)
+        .then((response) => {
+          const responseMessage = response.choices[0].message.content;
+          received.innerHTML += `<p class="response">${carta.name}: ${responseMessage}</p>`;
+        })
+        .catch((error) => {
+          console.error('error al obtener respuesta', error)
+        })
     });
 
     // Limpiar el área de mensaje

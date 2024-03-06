@@ -56,7 +56,7 @@ const CardsInfo = (card) => {
 
   const btnChat = cardElement.querySelector(".send");
 
-  btnChat.addEventListener("click", async () => {
+  btnChat.addEventListener("click", () => {
     const message = cardElement.querySelector("#message-send");
     const received = cardElement.querySelector("#received");
     const output = cardElement.querySelector("#output");
@@ -66,15 +66,22 @@ const CardsInfo = (card) => {
       contenedor.style.display = "block";
     });
     output.innerHTML = message.value;
-    const response = await communicateWithOpenAI(message.value, card); // funcion asicronica
-    received.innerHTML = response.choices[0].message.content;
-    //console.log(received);
+    const carta = data.find((x) => x.id === card.id);
+    communicateWithOpenAI(message.value, carta) // funcion asicronica
+      .then((response) => {
+        received.innerHTML = response.choices[0].message.content;
+        //console.log(received);
+      })
+      .catch((error) => {
+        console.error('error al obtener la respuesta', error)
+      })
   });
 
   infoCarta.append(navBar(), cardElement, Footer());
   //title.innerHTML = "Sakura: Cazadora de cartas";
 
   return infoCarta;
+
 };
 
 export default CardsInfo;
