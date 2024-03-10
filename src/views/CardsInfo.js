@@ -1,6 +1,7 @@
 import { Footer } from "../Components/Footer.js";
 import { navBar } from "../components/Navbar.js";
 import data from "../data/dataset.js";
+import { getApiKey } from "../lib/apiKey.js";
 import { communicateWithOpenAI } from "../lib/openAIApi.js";
 const CardsInfo = (card) => {
   const infoCarta = document.createElement("section");
@@ -42,7 +43,6 @@ const CardsInfo = (card) => {
                 <p id="received"></p>
                 </div>
                </div>
-
                 <div class="chat-message">
                     <textarea name="message-send" id="message-send" placeholder="type your message"> </textarea>
                     <button class="containerSend btnSend">    
@@ -51,7 +51,7 @@ const CardsInfo = (card) => {
                 </div>
             </div>
         </div>
-
+        
     `;
 
   const btnChat = cardElement.querySelector(".send");
@@ -61,6 +61,12 @@ const CardsInfo = (card) => {
     const received = cardElement.querySelector("#received");
     const output = cardElement.querySelector("#output");
     const contenedores = cardElement.querySelectorAll("#inactive");
+    const apiKey = getApiKey();
+    if (!apiKey) {
+      alert("Por favor, ingresa tu API antes de chatear.");
+      return  window.location= '/apikey';
+    }
+
     if (!message.value) return;
     contenedores.forEach((contenedor) => {
       contenedor.style.display = "block";
