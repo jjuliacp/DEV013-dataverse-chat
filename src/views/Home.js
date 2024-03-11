@@ -1,12 +1,20 @@
 import { navBar } from "../components/Navbar.js";
 import { Footer } from "../Components/Footer.js";
 import data from "../data/dataset.js";
-import { elementDataFilter, renderData, sortData, dangerousDataFilter, computeStats, percent } from "../lib/dataFunctions.js";
+import {
+  elementDataFilter,
+  renderData,
+  sortData,
+  dangerousDataFilter,
+  computeStats,
+  percent,
+} from "../lib/dataFunctions.js";
 
 const Home = () => {
   const homeView = document.createElement("section"); //contenedor principal de vista home
+  homeView.id = "sectionHome";
   const content = document.createElement("div");
-  content.className = "contentHome"
+  content.className = "contentHome";
   const inicio = document.createElement("div");
   inicio.id = "Inicio";
   inicio.className = "inicioContainer";
@@ -22,7 +30,7 @@ const Home = () => {
 
   const filterContainer = document.createElement("div");
   filterContainer.className = "filterContainer";
-  filterContainer.id = "Cartas"
+  filterContainer.id = "Cartas";
   filterContainer.innerHTML = `
   <h3 class="title cartasClow">Cartas Clow</h3>
   <!-- filtros/botones -->
@@ -69,45 +77,61 @@ const Home = () => {
   <button data-testid="button-clear" class="reset-btn button-common">Reset</button>`;
 
   let cardsData = data; // variable de la data original  - variable global
-  const cardsInfo = document.createElement("div");   // contenedor de cartas (o elementos HTML) que se generarán dinámicamente.
+  const cardsInfo = document.createElement("div"); // contenedor de cartas (o elementos HTML) que se generarán dinámicamente.
   cardsInfo.className = "cartasContainer";
-  cardsInfo.innerHTML = renderData(data)    //  colocándolo dentro de este contenedor, el html dinamico generado.
-
+  cardsInfo.innerHTML = renderData(data); //  colocándolo dentro de este contenedor, el html dinamico generado.
 
   //-------Botón de VerMas----------
 
   //--------- filtrado elementos-------
-  const selectElement = filterContainer.querySelector('[data-testid="select-filter"]');
+  const selectElement = filterContainer.querySelector(
+    '[data-testid="select-filter"]'
+  );
   selectElement.addEventListener("change", (event) => {
-    const filteredData = elementDataFilter(data, "elementEsencial", event.target.value); //datos que se imprime
+    const filteredData = elementDataFilter(
+      data,
+      "elementEsencial",
+      event.target.value
+    ); //datos que se imprime
     cardsData = filteredData; // asigno nuevo valor de data filtrada
     // console.log(cardsData);
-    cardsInfo.innerHTML = renderData(cardsData) //  colocándolo dentro de cardsinfo, la data filtrada renderizada.
+    cardsInfo.innerHTML = renderData(cardsData); //  colocándolo dentro de cardsinfo, la data filtrada renderizada.
   });
 
   //---------- filtrado daño-------------
   let filterDangerous = []; // data filtrada
-  const selectDangerous = filterContainer.querySelector('[data-testid="select-filter2"]');
-  const text = filterContainer.querySelector('#text') // para mostrar estadisticas
+  const selectDangerous = filterContainer.querySelector(
+    '[data-testid="select-filter2"]'
+  );
+  const text = filterContainer.querySelector("#text"); // para mostrar estadisticas
   selectDangerous.addEventListener("change", () => {
-    const selected = selectDangerous.options[selectDangerous.selectedIndex].value;
+    const selected =
+      selectDangerous.options[selectDangerous.selectedIndex].value;
     filterDangerous = dangerousDataFilter(data, "isDangerous", selected);
     cardsData = filterDangerous;
-    const selectedContent = selectDangerous.options[selectDangerous.selectedIndex].textContent; // data + campo que filtro y el valor que quiero filtrar
-    if (selectedContent === 'Inofensiva') {
-      text.textContent = `El  ${computeStats(data).promInofensivas}% de cartas son inofensivas` // ${} insertar valores de variables o expresiones dentro de una cadena de texto.    } else {
-      text.textContent = `El ${computeStats(data).promPeligrosas}% de cartas son peligrosas`
+    const selectedContent =
+      selectDangerous.options[selectDangerous.selectedIndex].textContent; // data + campo que filtro y el valor que quiero filtrar
+    if (selectedContent === "Inofensiva") {
+      text.textContent = `El  ${
+        computeStats(data).promInofensivas
+      }% de cartas son inofensivas`; // ${} insertar valores de variables o expresiones dentro de una cadena de texto.    } else {
+      text.textContent = `El ${
+        computeStats(data).promPeligrosas
+      }% de cartas son peligrosas`;
     }
-    cardsInfo.innerHTML = renderData(cardsData);// sobrescribir la data filtrada
+    cardsInfo.innerHTML = renderData(cardsData); // sobrescribir la data filtrada
   });
 
   // ---------- filtro por capturado
 
   let filterCapturedPercent = []; // data filtrada
-  const selectCaptured = filterContainer.querySelector('[data-testid="select-estadistic"]');
+  const selectCaptured = filterContainer.querySelector(
+    '[data-testid="select-estadistic"]'
+  );
   selectCaptured.addEventListener("change", () => {
     filterCapturedPercent = percent(data, "capturedBySyaoran");
-    const selectIndex = selectCaptured.options[selectCaptured.selectedIndex].textContent;
+    const selectIndex =
+      selectCaptured.options[selectCaptured.selectedIndex].textContent;
     if (selectIndex === "% Cartas capturadas por Sakura") {
       text.textContent = `El porcentaje de cartas capturadas por Sakura es ${filterCapturedPercent.percentSakura}%`;
     } else {
@@ -115,19 +139,22 @@ const Home = () => {
     }
   });
 
-  // ------------- ordenar--------  
-  const sortOrden = filterContainer.querySelector('[data-testid="select-sort"]');
+  // ------------- ordenar--------
+  const sortOrden = filterContainer.querySelector(
+    '[data-testid="select-sort"]'
+  );
   sortOrden.addEventListener("change", (e) => {
     const sortedData = sortData(cardsData, "name", e.target.value);
     ///console.log(sortedData);
     cardsData = sortedData;
     cardsInfo.innerHTML = renderData(sortedData);
-
   });
 
   //--- boton de reseteo--------
-  const resetBtn = filterContainer.querySelector('[data-testid="button-clear"]')
-  resetBtn.addEventListener('click', () => {
+  const resetBtn = filterContainer.querySelector(
+    '[data-testid="button-clear"]'
+  );
+  resetBtn.addEventListener("click", () => {
     //console.log(resetBtn);
     cardsData = data;
     cardsInfo.innerHTML = renderData(cardsData);
@@ -138,8 +165,8 @@ const Home = () => {
   });
 
   content.appendChild(inicio);
-  content.appendChild(filterContainer)
-  content.appendChild(cardsInfo)
+  content.appendChild(filterContainer);
+  content.appendChild(cardsInfo);
   homeView.append(navBar(), content, Footer());
 
   return homeView;
