@@ -1,6 +1,7 @@
 import { Footer } from "../Components/Footer.js";
 import { navBar } from "../components/Navbar.js";
 import data from "../data/dataset.js";
+import { getApiKey } from "../lib/apiKey.js";
 import { communicateWithOpenAI } from "../lib/openAIApi.js";
 const CardsInfo = (card) => {
   const infoCarta = document.createElement("section");
@@ -34,24 +35,24 @@ const CardsInfo = (card) => {
                   <p id="output"></p>
                   </div>
                 </div>
-              <div class="clearfix"  id="inactive">
+              <div class="clearfix"  id="inactive2">
                 <div class="message-data align-right">
                   <span class="message-data-name" >${carta.name}</span></i> 
                 </div>
                 <div class="message other-message float-right ">
-                <p id="received"></p>
+                  <p id="received"></p>
                 </div>
-               </div>
-
-                <div class="chat-message">
-                    <textarea name="message-send" id="message-send" placeholder="type your message"> </textarea>
-                    <button class="containerSend btnSend">    
-                    <img class="send" src="./img/icono3.svg" alt="iconSend" />
-                    </button>            
-                </div>
+              </div>
+              <p id="messageError"></p>
+              <div class="chat-message">
+                <textarea name="message-send" id="message-send" placeholder="type your message"> </textarea>
+                <button class="containerSend btnSend">    
+                  <img class="send" src="./img/icono3.svg" alt="iconSend" />
+                </button>            
+              </div>
             </div>
         </div>
-
+        
     `;
 
   const btnChat = cardElement.querySelector(".send");
@@ -60,17 +61,41 @@ const CardsInfo = (card) => {
     const message = cardElement.querySelector("#message-send");
     const received = cardElement.querySelector("#received");
     const output = cardElement.querySelector("#output");
-    const contenedores = cardElement.querySelectorAll("#inactive");
-    if (!message.value) return;
-    contenedores.forEach((contenedor) => {
-      contenedor.style.display = "block";
-    });
-    output.innerHTML = message.value;
+    const messageError = cardElement.querySelector('#messageError')
+    const apiKey = getApiKey();
+    // if (!apiKey) {
+    //   alert("Por favor, ingresa tu API antes de chatear.");
+    //   return  window.location= '/apikey';
+    // }
+    const messageReceived = cardElement.querySelector("#inactive2");
+
+
+    const messageSend = cardElement.querySelector("#inactive");
+    if (!message.value)return;
+     messageSend.style.display = "block"
+     output.innerHTML = message.value
+
     const carta = data.find((x) => x.id === card.id);
     communicateWithOpenAI(message.value, carta) // funcion asicronica
       .then((response) => {
-        received.innerHTML = response.choices[0].message.content;
-        //console.log(received);
+        try {
+          if(!apiKey){
+           alert("Por favor, ingresa tu API antes de chatear.");
+            messageReceived.style.display ="none"
+           // messageError.innerHTML += `<p>${response.error.message}</p>`
+            return  window.location= '/apikey';
+          //  return  messageError;
+          }  else{
+            messageReceived.style.display ="block"
+            received.innerHTML = response.choices[0].message.content;
+            //console.log(received);
+          }  
+        } catch (error) { // definir dependiendo el codigo de errror
+          messageError.innerHTML += '<p>Apikey mal ingresada o inválida. Intenta de nuevo o pide una nueva apikey</p>';
+          //console.log(messageError);
+         // console.error('error al obtener', error)
+        }
+       
       })
       .catch((error) => {
         console.error('error al obtener la respuesta', error)

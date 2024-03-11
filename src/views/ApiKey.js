@@ -18,14 +18,20 @@ const ApiKey = () => {
 
   const inputApi = contenido.querySelector("input[type='password']");
   const saveApi = contenido.querySelector(".btnChat");
-
+  const storedApiKey = localStorage.getItem("apikey");
+  if (storedApiKey) {
+    inputApi.value = storedApiKey;
+    saveApi.value = "Delete";
+  }
   saveApi.addEventListener("click", function () {
     //guardamos la Api al hacer click en save
-    if (saveApi.value === "Save") {
+    if (inputApi.value === ''){
+      alert('Clave Incorrecta. La clave que has ingresado es incorrecta. Por favor intenta de nuevo')
+    } else if (saveApi.value === "Save") {
       const passwordValue = inputApi.value;
       saveApi.value = "Delete"; //cambiamos su valor a "Delete" al hacer click
       setApiKey(passwordValue);
-
+      alert("API guardada con éxito");
       //console.log("Valor del campo de contraseña:", passwordValue);
     } else {
       inputApi.value = "";

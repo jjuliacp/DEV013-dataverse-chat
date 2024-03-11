@@ -658,8 +658,8 @@ footer {
 /* -- HISTORIA CHATTTTTTTTTTTTTTTTT -- */
 .response {
   color: snow;
-}
-#inactive {
+
+#inactive, #inactive2{
   display: none;
 }
 .message-data {
