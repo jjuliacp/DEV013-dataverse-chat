@@ -112,7 +112,8 @@ nav {
   border: none;
   font-weight: 500;
   transition: all 0.5s ease-in-out;
-  border-radius: 10%;
+  border-radius: 1rem;
+  text-decoration: none;
 }
 
 .navBtn:hover {
@@ -658,7 +659,7 @@ footer {
 /* -- HISTORIA CHATTTTTTTTTTTTTTTTT -- */
 .response {
   color: snow;
-
+}
 #inactive, #inactive2{
   display: none;
 }
@@ -824,6 +825,7 @@ footer {
 
   .nav-item a {
     font-size: 1rem;
+    text-decoration: none;
   }
   .containerChat {
     margin-top: 26px;
