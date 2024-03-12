@@ -418,7 +418,7 @@ svg {
 }
 
 /*----------------------MODAL ------------- */
-dialog {
+/* dialog {
   border: none;
   border-radius: 1rem;
   padding-top: 1rem;
@@ -443,7 +443,7 @@ dialog {
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-}
+} */
 
 .chat-header {
   width: 100%;
@@ -456,6 +456,7 @@ dialog {
   border-radius: 1rem 1rem 0 0;
   border: solid 2px #855065;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  padding: 10px 0 10px 0;
 }
 
 .img-chat {
@@ -656,16 +657,24 @@ footer {
   opacity: 0.7;
   font-weight: normal;
 }
-/* -- HISTORIA CHATTTTTTTTTTTTTTTTT -- */
+/* -- HISTORIA CHAT INDIVIDUAL -- */
 .response {
   color: snow;
 }
-#inactive, #inactive2{
+#inactive,
+#inactive2 {
   display: none;
 }
 .message-data {
-  margin-bottom: 15px;
-  color: rgb(0, 0, 0);
+  display: flex;
+  margin-bottom: 4px;
+  justify-content: flex-end;
+}
+
+.message-data2 {
+  display: flex;
+  margin-bottom: 4px;
+  justify-content: flex-start;
 }
 
 .message-data-time {
@@ -674,17 +683,17 @@ footer {
 }
 .message {
   color: white;
-  padding: 18px 20px;
+  padding: 4px 13px;
   line-height: 26px;
   font-size: 16px;
-  border-radius: 7px;
-  margin-bottom: 30px;
+  border-radius: 8px;
+  margin-bottom: 16px;
   width: 90%;
 }
 .message-data-name {
   color: snow;
 }
-.message:after {
+/* .message:after {
   bottom: 100%;
   left: 7%;
   border: solid transparent;
@@ -696,7 +705,7 @@ footer {
   border-bottom-color: rgb(223, 255, 223);
   border-width: 10px;
   margin-left: -10px;
-}
+} */
 
 .my-message {
   background: snow;
@@ -709,6 +718,25 @@ footer {
     border-bottom-color: blue;
     left: 93%;
   }
+}
+
+.conteiner-you {
+  margin-left: 190px;
+  text-align: end;
+}
+
+.conteiner-card {
+  margin-right: 100px;
+  text-align: start;
+}
+
+.contain-historial {
+  margin: 0 20px 0 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: rgba(227, 170, 185, 1) #9a5c75;
+  scrollbar-width: thin;
+  padding-right: 12px;
 }
 
 /* -- VISTA CHAT GRUPAL (Chat grupal) -- */
