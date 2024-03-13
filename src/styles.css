@@ -422,7 +422,7 @@ svg {
 }
 
 /*----------------------MODAL ------------- */
-dialog {
+/* dialog {
   border: none;
   border-radius: 1rem;
   padding-top: 1rem;
@@ -447,7 +447,7 @@ dialog {
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-}
+} */
 
 .chat-header {
   width: 100%;
@@ -460,6 +460,7 @@ dialog {
   border-radius: 1rem 1rem 0 0;
   border: solid 2px #855065;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  padding: 10px 0 10px 0;
 }
 
 .img-chat {
@@ -506,7 +507,7 @@ dialog {
 
 #message-send {
   width: 80%;
-  height: 4rem;
+  height: 2rem;
   font-size: 1rem;
   padding: 1rem;
   border-radius: 2rem;
@@ -607,6 +608,9 @@ footer {
   flex-direction: column;
   align-items: flex-start;
   overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: rgba(227, 170, 185, 1) #9a5c75;
+  scrollbar-width: thin;
   box-shadow: 0px 4px 12px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -660,16 +664,24 @@ footer {
   opacity: 0.7;
   font-weight: normal;
 }
-/* -- HISTORIA CHATTTTTTTTTTTTTTTTT -- */
-.response {
+/* -- HISTORIA CHAT INDIVIDUAL -- */
+/* .response {
   color: snow;
-}
-#inactive, #inactive2{
+} */
+/* #inactive,
+#inactive2 {
   display: none;
-}
+} */
 .message-data {
-  margin-bottom: 15px;
-  color: rgb(0, 0, 0);
+  display: flex;
+  margin-bottom: 4px;
+  justify-content: flex-end;
+}
+
+.message-data2 {
+  display: flex;
+  margin-bottom: 4px;
+  justify-content: flex-start;
 }
 
 .message-data-time {
@@ -678,17 +690,18 @@ footer {
 }
 .message {
   color: white;
-  padding: 18px 20px;
+  padding: 4px 13px;
   line-height: 26px;
   font-size: 16px;
-  border-radius: 7px;
-  margin-bottom: 30px;
+  border-radius: 8px;
+  margin-bottom: 16px;
   width: 90%;
+  max-width: max-content;
 }
 .message-data-name {
   color: snow;
 }
-.message:after {
+/* .message:after {
   bottom: 100%;
   left: 7%;
   border: solid transparent;
@@ -700,19 +713,48 @@ footer {
   border-bottom-color: rgb(223, 255, 223);
   border-width: 10px;
   margin-left: -10px;
-}
+} */
 
 .my-message {
   background: snow;
+  margin-left: auto;
 }
 
 .other-message {
   background: rgb(219, 219, 255);
-
-  &:after {
+  /* &:after {
     border-bottom-color: blue;
     left: 93%;
-  }
+  } */
+}
+
+.conteiner-you {
+  margin-left: 190px;
+  text-align: end;
+}
+
+.conteiner-card {
+  margin-right: 100px;
+  text-align: start;
+}
+
+.contain-historial {
+  margin: 0 20px 0 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: rgba(227, 170, 185, 1) #9a5c75;
+  scrollbar-width: thin;
+  padding-right: 12px;
+}
+
+/* -- HISTORIA CHAT GRUPAL -- */
+
+/* #inactive {
+  display: none;
+} */
+
+.received-conteiner {
+  align-items: start;
 }
 
 /* -- VISTA CHAT GRUPAL (Chat grupal) -- */
@@ -742,6 +784,9 @@ footer {
 .chatG-historial {
   margin: 10px 10px 0 10px;
   overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: rgba(227, 170, 185, 1) #9a5c75;
+  scrollbar-width: thin;
   padding: 6rem;
   height: 40%;
 }
@@ -753,7 +798,7 @@ footer {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: flex-end;
-  margin-top: 100px;
+  margin-top: 40px;
 }
 
 .GrupalSend {

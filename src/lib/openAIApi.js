@@ -5,9 +5,8 @@ export const communicateWithOpenAI = (message, carta) => {
   // Obtén la clave de API
 
   const apiKey = getApiKey(); //la funcion getApiKey obtiene la clave API almacenada en el localStorage y la guardo en una const
-  console.log(apiKey);
+  /* console.log(apiKey); */
   // console.log(data);
-
 
   return fetch("https://api.openai.com/v1/chat/completions", {
     //petición fetch a esa dirección
@@ -21,7 +20,7 @@ export const communicateWithOpenAI = (message, carta) => {
       messages: [
         {
           role: "system",
-          content: `You are a Carta Clow : ${carta.name}`, //darle rol del personaje
+          content: `Eres una Carta Clow : ${carta.name}`, //darle rol del personaje
         },
         {
           role: "user",
@@ -30,15 +29,13 @@ export const communicateWithOpenAI = (message, carta) => {
       ],
     }),
   })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);  // Hacer algo con los datos, en este caso, los imprimes en la consola
+    .then((response) => response.json())
+    .then((data) => {
+      /* console.log(data); */ // Hacer algo con los datos, en este caso, los imprimes en la consola
       return data;
     })
-    .catch(error => {
-      console.error('error al hacer la solicitud', error);
-      return null
-    })
-
+    .catch((error) => {
+      console.error("error al hacer la solicitud", error);
+      return null;
+    });
 };
-
