@@ -2,6 +2,7 @@ import data from "../data/dataset.js";
 import { getApiKey } from "../lib/apiKey.js";
 /* import { renderData } from "../lib/dataFunctions.js"; */
 import { communicateWithOpenAI } from "../lib/openAIApi.js";
+import { getApiKey } from "../lib/apiKey.js";
 const ChatGrupal = () => {
   const chatG = document.createElement("section");
   chatG.className = "viewChatGrupal";
@@ -19,12 +20,11 @@ const ChatGrupal = () => {
         </div>
         <div id="chatG-historial" class="chatG-historial">
 
-          <div id="output" ></div>
+          <div id="output" class="response" ></div>
           
           <div id="received" class="received-conteiner"></div>
-
+          <p id="messageError"></p>
         </div>
-        <p id="messageError"></p>
         <div class="window-chat">
           <textarea name="message-send" id="message-send" placeholder="type your message"> </textarea>
           <button class="containerSend GrupalSend">    
@@ -100,7 +100,7 @@ const ChatGrupal = () => {
     const received = chatGrupalText.querySelector("#received"); //mensaje de IA
     const output = chatGrupalText.querySelector("#output"); //contenedor de mensaje en historial
 
-    const messageError = chatGrupalText.querySelector("#messageError");
+    const errormessage = chatGrupalText.querySelector("#messageError");
     const apiKey = getApiKey();
     if (!message.value) return;
 
@@ -117,11 +117,13 @@ const ChatGrupal = () => {
     data.forEach((carta) => {
       communicateWithOpenAI(message.value, carta)
         .then((response) => {
-          try {
             if (!apiKey) {
               alert("Por favor, ingresa tu API antes de chatear.");
               return (window.location = "/apikey");
-            } else {
+            } else if (response.error.code === "invalid_api_key") {
+            errormessage.innerHTML += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
+            //console.log( received.innerHTML = 'La apikey no es valida.Revisa que hayas ingresado una Api valida. Error 401 ingresa aqui para saber mas : https://api.openai.com/v1/chat/completions');
+          } else {
               // Añadir mensaje de la IA al historial
               const responseMessage = response.choices[0].message.content;
               const iaMessage = document.createElement("div");
@@ -142,12 +144,6 @@ const ChatGrupal = () => {
               // Limpiar el área de entrada de mensajes
               message.value = "";
             }
-          } catch (error) {
-            // definir dependiendo el codigo de errror
-            messageError.innerHTML +=
-              "<p>Apikey mal ingresada o inválida. Intenta de nuevo o pide una nueva apikey</p>";
-            //console.log(messageError);
-            // console.error('error al obtener', error)
           }
         })
         .catch((error) => {
