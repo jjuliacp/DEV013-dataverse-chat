@@ -1,6 +1,7 @@
 import data from "../data/dataset.js";
 /* import { renderData } from "../lib/dataFunctions.js"; */
 import { communicateWithOpenAI } from "../lib/openAIApi.js";
+import { getApiKey } from "../lib/apiKey.js";
 const ChatGrupal = () => {
   const chatG = document.createElement("section");
   chatG.className = "viewChatGrupal";
@@ -19,7 +20,7 @@ const ChatGrupal = () => {
         <div class="chatG-historial">
         <div id="output" class="response"></div>
         <div id="received"></div>
-
+        <p id="messageError"></p>
         </div>
         <div class="window-chat">
           <textarea name="message-send" id="message-send" placeholder="type your message"> </textarea>
@@ -94,13 +95,26 @@ const ChatGrupal = () => {
     const message = chatGrupalText.querySelector("#message-send");
     const received = chatGrupalText.querySelector("#received");
     const output = chatGrupalText.querySelector("#output");
+    const errormessage = chatGrupalText.querySelector("#messageError")
+    const apiKey = getApiKey();
     output.innerHTML = message.value;
     data.forEach((carta) => {
       communicateWithOpenAI(message.value, carta)
         .then((response) => {
-          const responseMessage = response.choices[0].message.content;
-          received.innerHTML += `<p class="response">${carta.name}: ${responseMessage}</p>`;
-        })
+          if(!apiKey){
+            alert("Por favor, ingresa tu API antes de chatear.");
+            // messageError.innerHTML += `<p>${response.error.message}</p>`
+             return  window.location= '/apikey';
+           //  return  messageError;
+           }  else if (response.error.code === "invalid_api_key"){
+              errormessage.innerHTML  += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
+             //console.log( received.innerHTML = 'La apikey no es valida.Revisa que hayas ingresado una Api valida. Error 401 ingresa aqui para saber mas : https://api.openai.com/v1/chat/completions');
+           } else{
+             const responseMessage = response.choices[0].message.content;
+             received.innerHTML = `<p class="response">${carta.name}: ${responseMessage}</p>`;
+             //console.log(received);
+           }  
+         })
         .catch((error) => {
           console.error('error al obtener respuesta', error)
         })
