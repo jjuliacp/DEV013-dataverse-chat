@@ -71,28 +71,28 @@ const CardsInfo = (card) => {
 
 
     const messageSend = cardElement.querySelector("#inactive");
-    if (!message.value)return;
-     messageSend.style.display = "block"
-     output.innerHTML = message.value
+    if (!message.value) return;
+    messageSend.style.display = "block"
+    output.innerHTML = message.value
 
     const carta = data.find((x) => x.id === card.id);
     communicateWithOpenAI(message.value, carta) // funcion asicronica
       .then((response) => {
-          if(!apiKey){
-           alert("Por favor, ingresa tu API antes de chatear.");
-            messageReceived.style.display ="none"
-           // messageError.innerHTML += `<p>${response.error.message}</p>`
-            return  window.location= '/apikey';
+        if (!apiKey) {
+          alert("Por favor, ingresa tu API antes de chatear.");
+          messageReceived.style.display = "none"
+          // messageError.innerHTML += `<p>${response.error.message}</p>`
+          return window.location = '/apikey';
           //  return  messageError;
-          }  else if (response.error.code === "invalid_api_key"){
-            messageError.innerHTML += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
-            
-          } else{
-            messageReceived.style.display ="block"
-            received.innerHTML = response.choices[0].message.content;
-            //console.log(received);
-          }    
-       
+        } else if (response.error && response.error.code === "invalid_api_key") {
+          messageError.innerHTML += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
+
+        } else {
+          messageReceived.style.display = "block"
+          received.innerHTML = response.choices[0].message.content;
+          //console.log(received);
+        }
+
       })
       .catch((error) => {
         console.error('la promesa fue rechazada', error)

@@ -101,20 +101,20 @@ const ChatGrupal = () => {
     data.forEach((carta) => {
       communicateWithOpenAI(message.value, carta)
         .then((response) => {
-          if(!apiKey){
+          if (!apiKey) {
             alert("Por favor, ingresa tu API antes de chatear.");
             // messageError.innerHTML += `<p>${response.error.message}</p>`
-             return  window.location= '/apikey';
-           //  return  messageError;
-           }  else if (response.error.code === "invalid_api_key"){
-              errormessage.innerHTML  += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
-             //console.log( received.innerHTML = 'La apikey no es valida.Revisa que hayas ingresado una Api valida. Error 401 ingresa aqui para saber mas : https://api.openai.com/v1/chat/completions');
-           } else{
-             const responseMessage = response.choices[0].message.content;
-             received.innerHTML = `<p class="response">${carta.name}: ${responseMessage}</p>`;
-             //console.log(received);
-           }  
-         })
+            return window.location = '/apikey';
+            //  return  messageError;
+          } else if (response.error.code === "invalid_api_key") {
+            errormessage.innerHTML += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
+            //console.log( received.innerHTML = 'La apikey no es valida.Revisa que hayas ingresado una Api valida. Error 401 ingresa aqui para saber mas : https://api.openai.com/v1/chat/completions');
+          } else {
+            const responseMessage = response.choices[0].message.content;
+            received.innerHTML = `<p class="response">${carta.name}: ${responseMessage}</p>`;
+            //console.log(received);
+          }
+        })
         .catch((error) => {
           console.error('error al obtener respuesta', error)
         })

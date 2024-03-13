@@ -30,7 +30,11 @@
 body {
   background: var(--color-gradient);
 }
+#messageError p ,#messageError p a {
+ width: 27rem;
+  color: snow;
 
+}
 .contentHome,
 .hero {
   width: 90%;
