@@ -2,7 +2,6 @@ import data from "../data/dataset.js";
 import { getApiKey } from "../lib/apiKey.js";
 /* import { renderData } from "../lib/dataFunctions.js"; */
 import { communicateWithOpenAI } from "../lib/openAIApi.js";
-import { getApiKey } from "../lib/apiKey.js";
 const ChatGrupal = () => {
   const chatG = document.createElement("section");
   chatG.className = "viewChatGrupal";
@@ -19,9 +18,7 @@ const ChatGrupal = () => {
           <img id="ico3" class="img-icono openIcon" src="./img/person-3-fill-svgrepo-com(2).svg" alt=icono-3 />
         </div>
         <div id="chatG-historial" class="chatG-historial">
-
-          <div id="output" class="response" ></div>
-          
+          <div id="output" class="response" ></div>        
           <div id="received" class="received-conteiner"></div>
           <p id="messageError"></p>
         </div>
@@ -117,44 +114,41 @@ const ChatGrupal = () => {
     data.forEach((carta) => {
       communicateWithOpenAI(message.value, carta)
         .then((response) => {
-            if (!apiKey) {
-              alert("Por favor, ingresa tu API antes de chatear.");
-              return (window.location = "/apikey");
-            } else if (response.error.code === "invalid_api_key") {
+          if (!apiKey) {
+            alert("Por favor, ingresa tu API antes de chatear.");
+            return (window.location = "/apikey");
+          } else if (response.error && response.error.code === "invalid_api_key") {
             errormessage.innerHTML += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
             //console.log( received.innerHTML = 'La apikey no es valida.Revisa que hayas ingresado una Api valida. Error 401 ingresa aqui para saber mas : https://api.openai.com/v1/chat/completions');
           } else {
-              // Añadir mensaje de la IA al historial
-              const responseMessage = response.choices[0].message.content;
-              const iaMessage = document.createElement("div");
-              iaMessage.className = "message-data2";
-              iaMessage.innerHTML = `
-          <span class="message-data-name">${carta.name}</span>
-        `;
+            // Añadir mensaje de la IA al historial
+            const responseMessage = response.choices[0].message.content;
+            const iaMessage = document.createElement("div");
+            iaMessage.className = "message-data2";
+            iaMessage.innerHTML = `
+            <span class="message-data-name">${carta.name}</span>`;
 
-              const iaMessageContent = document.createElement("div");
-              iaMessageContent.className = "message other-message float-right";
-              iaMessageContent.innerHTML = `
-          <p class="response">${responseMessage}</p>
-        `;
+            const iaMessageContent = document.createElement("div");
+            iaMessageContent.className = "message other-message float-right";
+            iaMessageContent.innerHTML = `
+            <p class="response">${responseMessage}</p>`;
 
-              received.appendChild(iaMessage);
-              received.appendChild(iaMessageContent);
+            received.appendChild(iaMessage);
+            received.appendChild(iaMessageContent);
 
-              // Limpiar el área de entrada de mensajes
-              message.value = "";
-            }
+            // Limpiar el área de entrada de mensajes
+            message.value = "";
           }
         })
-        .catch((error) => {
-          console.error("error al obtener respuesta", error);
-        });
-    });
-
-    // Limpiar el área de mensaje
-    message.value = "";
+      .catch((error) => {
+        console.error("error al obtener respuesta", error);
+      });
   });
-  return chatG;
+
+  // Limpiar el área de mensaje
+  message.value = "";
+});
+return chatG;
 };
 
 export default ChatGrupal;
