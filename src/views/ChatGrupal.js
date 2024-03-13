@@ -1,4 +1,5 @@
 import data from "../data/dataset.js";
+import { getApiKey } from "../lib/apiKey.js";
 /* import { renderData } from "../lib/dataFunctions.js"; */
 import { communicateWithOpenAI } from "../lib/openAIApi.js";
 const ChatGrupal = () => {
@@ -16,11 +17,14 @@ const ChatGrupal = () => {
           <h3 class="title-chatGrupal">Chat Grupal</h3>
           <img id="ico3" class="img-icono openIcon" src="./img/person-3-fill-svgrepo-com(2).svg" alt=icono-3 />
         </div>
-        <div class="chatG-historial">
-        <div id="output" class="response"></div>
-        <div id="received"></div>
+        <div id="chatG-historial" class="chatG-historial">
+
+          <div id="output" ></div>
+          
+          <div id="received" class="received-conteiner"></div>
 
         </div>
+        <p id="messageError"></p>
         <div class="window-chat">
           <textarea name="message-send" id="message-send" placeholder="type your message"> </textarea>
           <button class="containerSend GrupalSend">    
@@ -89,21 +93,66 @@ const ChatGrupal = () => {
   });
 
   const btnChat = chatGrupalText.querySelector(".send");
+  /* const chatGHistorial = chatGrupalText.querySelector("#chatG-historial"); */
 
   btnChat.addEventListener("click", () => {
-    const message = chatGrupalText.querySelector("#message-send");
-    const received = chatGrupalText.querySelector("#received");
-    const output = chatGrupalText.querySelector("#output");
-    output.innerHTML = message.value;
+    const message = chatGrupalText.querySelector("#message-send"); //mensaje enviado de textarea
+    const received = chatGrupalText.querySelector("#received"); //mensaje de IA
+    const output = chatGrupalText.querySelector("#output"); //contenedor de mensaje en historial
+
+    const messageError = chatGrupalText.querySelector("#messageError");
+    const apiKey = getApiKey();
+    if (!message.value) return;
+
+    // Mi mensaje de usuario al historial
+    output.innerHTML += `
+      <div class="message-data">
+        <span class="message-data-name">Tu</span>
+      </div>
+      <div class="message my-message">
+        <p>${message.value}</p>
+      </div>
+      `;
+
     data.forEach((carta) => {
       communicateWithOpenAI(message.value, carta)
         .then((response) => {
-          const responseMessage = response.choices[0].message.content;
-          received.innerHTML += `<p class="response">${carta.name}: ${responseMessage}</p>`;
+          try {
+            if (!apiKey) {
+              alert("Por favor, ingresa tu API antes de chatear.");
+              return (window.location = "/apikey");
+            } else {
+              // Añadir mensaje de la IA al historial
+              const responseMessage = response.choices[0].message.content;
+              const iaMessage = document.createElement("div");
+              iaMessage.className = "message-data2";
+              iaMessage.innerHTML = `
+          <span class="message-data-name">${carta.name}</span>
+        `;
+
+              const iaMessageContent = document.createElement("div");
+              iaMessageContent.className = "message other-message float-right";
+              iaMessageContent.innerHTML = `
+          <p class="response">${responseMessage}</p>
+        `;
+
+              received.appendChild(iaMessage);
+              received.appendChild(iaMessageContent);
+
+              // Limpiar el área de entrada de mensajes
+              message.value = "";
+            }
+          } catch (error) {
+            // definir dependiendo el codigo de errror
+            messageError.innerHTML +=
+              "<p>Apikey mal ingresada o inválida. Intenta de nuevo o pide una nueva apikey</p>";
+            //console.log(messageError);
+            // console.error('error al obtener', error)
+          }
         })
         .catch((error) => {
-          console.error('error al obtener respuesta', error)
-        })
+          console.error("error al obtener respuesta", error);
+        });
     });
 
     // Limpiar el área de mensaje
