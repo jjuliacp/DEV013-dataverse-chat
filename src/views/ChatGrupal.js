@@ -18,6 +18,7 @@ const ChatGrupal = () => {
           <img id="ico3" class="img-icono openIcon" src="./img/person-3-fill-svgrepo-com(2).svg" alt=icono-3 />
         </div>
         <div id="chatG-historial" class="chatG-historial">
+
           <div id="output" class="response" ></div>        
           <div id="received" class="received-conteiner"></div>
           <p id="messageError"></p>
@@ -94,12 +95,15 @@ const ChatGrupal = () => {
 
   btnChat.addEventListener("click", () => {
     const message = chatGrupalText.querySelector("#message-send"); //mensaje enviado de textarea
-    const received = chatGrupalText.querySelector("#received"); //mensaje de IA
-    const output = chatGrupalText.querySelector("#output"); //contenedor de mensaje en historial
+    const chatGHistorial = chatGrupalText.querySelector("#chatG-historial");
+    // const received = chatGrupalText.querySelector("#received"); //mensaje de IA
+    // const output = chatGrupalText.querySelector("#output"); //contenedor de mensaje en historial
 
     const errormessage = chatGrupalText.querySelector("#messageError");
     const apiKey = getApiKey();
     if (!message.value) return;
+    const output = document.createElement("div");
+    const received = document.createElement("div");
 
     // Mi mensaje de usuario al historial
     output.innerHTML += `
@@ -110,34 +114,46 @@ const ChatGrupal = () => {
         <p>${message.value}</p>
       </div>
       `;
-
+    chatGHistorial.appendChild(output);
+    console.log(message);
     data.forEach((carta) => {
       communicateWithOpenAI(message.value, carta)
         .then((response) => {
-          if (!apiKey) {
-            alert("Por favor, ingresa tu API antes de chatear.");
-            return (window.location = "/apikey");
-          } else if (response.error && response.error.code === "invalid_api_key") {
-            errormessage.innerHTML += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
-            //console.log( received.innerHTML = 'La apikey no es valida.Revisa que hayas ingresado una Api valida. Error 401 ingresa aqui para saber mas : https://api.openai.com/v1/chat/completions');
-          } else {
-            // Añadir mensaje de la IA al historial
-            const responseMessage = response.choices[0].message.content;
-            const iaMessage = document.createElement("div");
-            iaMessage.className = "message-data2";
-            iaMessage.innerHTML = `
-            <span class="message-data-name">${carta.name}</span>`;
+          try {
+            if (!apiKey) {
+              alert("Por favor, ingresa tu API antes de chatear.");
+              return (window.location = "/apikey");
+            } else {
+              // Añadir mensaje de la IA al historial
+              const responseMessage = response.choices[0].message.content;
+              const iaMessage = document.createElement("div");
+              iaMessage.className = "message-data2";
+              iaMessage.innerHTML = `
+          <span class="message-data-name">${carta.name}</span>
+        `;
 
-            const iaMessageContent = document.createElement("div");
-            iaMessageContent.className = "message other-message float-right";
-            iaMessageContent.innerHTML = `
-            <p class="response">${responseMessage}</p>`;
+              const iaMessageContent = document.createElement("div");
+              iaMessageContent.className = "message other-message float-right";
+              iaMessageContent.innerHTML = `
+          <p class="response">${responseMessage}</p>
+        `;
 
-            received.appendChild(iaMessage);
-            received.appendChild(iaMessageContent);
+              received.appendChild(iaMessage);
+              received.appendChild(iaMessageContent);
+              chatGHistorial.appendChild(received);
 
-            // Limpiar el área de entrada de mensajes
-            message.value = "";
+              // Limpiar el área de entrada de mensajes
+              message.value = "";
+
+              // Ajustar el scroll al final del historial
+              chatGHistorial.scrollTop = chatGHistorial.scrollHeight;
+            }
+          } catch (error) {
+            // definir dependiendo el codigo de errror
+            messageError.innerHTML +=
+              "<p>Apikey mal ingresada o inválida. Intenta de nuevo o pide una nueva apikey</p>";
+            //console.log(messageError);
+            // console.error('error al obtener', error)
           }
         })
       .catch((error) => {
