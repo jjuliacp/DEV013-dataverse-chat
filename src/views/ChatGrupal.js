@@ -20,8 +20,8 @@ const ChatGrupal = () => {
         <div id="chatG-historial" class="chatG-historial">
 
           <div id="output" ></div>
-          
           <div id="received" class="received-conteiner"></div>
+          
 
         </div>
         <p id="messageError"></p>
@@ -97,12 +97,15 @@ const ChatGrupal = () => {
 
   btnChat.addEventListener("click", () => {
     const message = chatGrupalText.querySelector("#message-send"); //mensaje enviado de textarea
-    const received = chatGrupalText.querySelector("#received"); //mensaje de IA
-    const output = chatGrupalText.querySelector("#output"); //contenedor de mensaje en historial
+    const chatGHistorial = chatGrupalText.querySelector("#chatG-historial");
+    // const received = chatGrupalText.querySelector("#received"); //mensaje de IA
+    // const output = chatGrupalText.querySelector("#output"); //contenedor de mensaje en historial
 
     const messageError = chatGrupalText.querySelector("#messageError");
     const apiKey = getApiKey();
     if (!message.value) return;
+    const output = document.createElement("div");
+    const received = document.createElement("div");
 
     // Mi mensaje de usuario al historial
     output.innerHTML += `
@@ -113,7 +116,8 @@ const ChatGrupal = () => {
         <p>${message.value}</p>
       </div>
       `;
-
+    chatGHistorial.appendChild(output);
+    console.log(message);
     data.forEach((carta) => {
       communicateWithOpenAI(message.value, carta)
         .then((response) => {
@@ -138,9 +142,13 @@ const ChatGrupal = () => {
 
               received.appendChild(iaMessage);
               received.appendChild(iaMessageContent);
+              chatGHistorial.appendChild(received);
 
               // Limpiar el área de entrada de mensajes
               message.value = "";
+
+              // Ajustar el scroll al final del historial
+              chatGHistorial.scrollTop = chatGHistorial.scrollHeight;
             }
           } catch (error) {
             // definir dependiendo el codigo de errror
