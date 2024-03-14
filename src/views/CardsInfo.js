@@ -67,24 +67,26 @@ const CardsInfo = (card) => {
     const carta = data.find((x) => x.id === card.id);
     communicateWithOpenAI(message.value, carta) // funcion asicronica
       .then((response) => {
-          if (!apiKey) {
-            alert("Por favor, ingresa tu API antes de chatear.");
-            /* messageReceived.style.display = "none"; */
-            // messageError.innerHTML += `<p>${response.error.message}</p>`
-            return (window.location = "/apikey");
-            //  return  messageError;
-          } else if (response.error && response.error.code === "invalid_api_key") {
+        if (!apiKey) {
+          alert("Por favor, ingresa tu API antes de chatear.");
+          /* messageReceived.style.display = "none"; */
+          // messageError.innerHTML += `<p>${response.error.message}</p>`
+          return (window.location = "/apikey");
+          //  return  messageError;
+        } else if (
+          response.error &&
+          response.error.code === "invalid_api_key"
+        ) {
           messageError.innerHTML += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
-
         } else {
-            /* messageReceived.style.display = "block"; */
-            /* received.innerHTML = response.choices[0].message.content; */
-            //console.log(received);
+          /* messageReceived.style.display = "block"; */
+          /* received.innerHTML = response.choices[0].message.content; */
+          //console.log(received);
 
-            // Mi mensaje de usuario al historial
-            const userMessage = document.createElement("div");
-            userMessage.className = "conteiner-you";
-            userMessage.innerHTML = `
+          // Mi mensaje de usuario al historial
+          const userMessage = document.createElement("div");
+          userMessage.className = "conteiner-you";
+          userMessage.innerHTML = `
               <div class="message-data">
                 <span class="message-data-name">Tu</span>
               </div>
@@ -92,12 +94,12 @@ const CardsInfo = (card) => {
                 <p id="output">${message.value}</p>
               </div>
             `;
-            chatHistoryContainer.appendChild(userMessage);
+          chatHistoryContainer.appendChild(userMessage);
 
-            // Añadir mensaje de la IA al historial
-            const aiMessage = document.createElement("div");
-            aiMessage.className = "conteiner-card";
-            aiMessage.innerHTML = `
+          // Añadir mensaje de la IA al historial
+          const aiMessage = document.createElement("div");
+          aiMessage.className = "conteiner-card";
+          aiMessage.innerHTML = `
               <div class="message-data2">
                 <span class="message-data-name">${carta.name}</span>
               </div>
@@ -105,14 +107,14 @@ const CardsInfo = (card) => {
                 <p id="received">${response.choices[0].message.content}</p>
               </div>
             `;
-            chatHistoryContainer.appendChild(aiMessage);
+          chatHistoryContainer.appendChild(aiMessage);
 
-            // Limpiar el área de entrada de mensajes
-            message.value = "";
+          // Limpiar el área de entrada de mensajes
+          message.value = "";
 
-            // Ajustar el scroll al final del historial
-            chatHistoryContainer.scrollTop = chatHistoryContainer.scrollHeight;
-          }
+          // Ajustar el scroll al final del historial
+          chatHistoryContainer.scrollTop = chatHistoryContainer.scrollHeight;
+        }
       })
       .catch((error) => {
         console.error("error al obtener la respuesta", error);

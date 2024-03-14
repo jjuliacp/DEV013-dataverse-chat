@@ -119,12 +119,14 @@ const ChatGrupal = () => {
     data.forEach((carta) => {
       communicateWithOpenAI(message.value, carta)
         .then((response) => {
-
           if (!apiKey) {
             alert("Por favor, ingresa tu API antes de chatear.");
             return (window.location = "/apikey");
-          } else if (response.error && response.error.code === "invalid_api_key") {
-            messageError.innerHTML += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
+          } else if (
+            response.error &&
+            response.error.code === "invalid_api_key"
+          ) {
+            errormessage.innerHTML += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
           } else {
             // Añadir mensaje de la IA al historial
             const responseMessage = response.choices[0].message.content;
@@ -150,7 +152,6 @@ const ChatGrupal = () => {
             // Ajustar el scroll al final del historial
             chatGHistorial.scrollTop = chatGHistorial.scrollHeight;
           }
-
         })
         .catch((error) => {
           console.error("error al obtener respuesta", error);
