@@ -119,52 +119,48 @@ const ChatGrupal = () => {
     data.forEach((carta) => {
       communicateWithOpenAI(message.value, carta)
         .then((response) => {
-          try {
-            if (!apiKey) {
-              alert("Por favor, ingresa tu API antes de chatear.");
-              return (window.location = "/apikey");
-            } else {
-              // Añadir mensaje de la IA al historial
-              const responseMessage = response.choices[0].message.content;
-              const iaMessage = document.createElement("div");
-              iaMessage.className = "message-data2";
-              iaMessage.innerHTML = `
+
+          if (!apiKey) {
+            alert("Por favor, ingresa tu API antes de chatear.");
+            return (window.location = "/apikey");
+          } else if (response.error && response.error.code === "invalid_api_key") {
+            messageError.innerHTML += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
+          } else {
+            // Añadir mensaje de la IA al historial
+            const responseMessage = response.choices[0].message.content;
+            const iaMessage = document.createElement("div");
+            iaMessage.className = "message-data2";
+            iaMessage.innerHTML = `
           <span class="message-data-name">${carta.name}</span>
         `;
 
-              const iaMessageContent = document.createElement("div");
-              iaMessageContent.className = "message other-message float-right";
-              iaMessageContent.innerHTML = `
+            const iaMessageContent = document.createElement("div");
+            iaMessageContent.className = "message other-message float-right";
+            iaMessageContent.innerHTML = `
           <p class="response">${responseMessage}</p>
         `;
 
-              received.appendChild(iaMessage);
-              received.appendChild(iaMessageContent);
-              chatGHistorial.appendChild(received);
+            received.appendChild(iaMessage);
+            received.appendChild(iaMessageContent);
+            chatGHistorial.appendChild(received);
 
-              // Limpiar el área de entrada de mensajes
-              message.value = "";
+            // Limpiar el área de entrada de mensajes
+            message.value = "";
 
-              // Ajustar el scroll al final del historial
-              chatGHistorial.scrollTop = chatGHistorial.scrollHeight;
-            }
-          } catch (error) {
-            // definir dependiendo el codigo de errror
-            messageError.innerHTML +=
-              "<p>Apikey mal ingresada o inválida. Intenta de nuevo o pide una nueva apikey</p>";
-            //console.log(messageError);
-            // console.error('error al obtener', error)
+            // Ajustar el scroll al final del historial
+            chatGHistorial.scrollTop = chatGHistorial.scrollHeight;
           }
-        })
-      .catch((error) => {
-        console.error("error al obtener respuesta", error);
-      });
-  });
 
-  // Limpiar el área de mensaje
-  message.value = "";
-});
-return chatG;
+        })
+        .catch((error) => {
+          console.error("error al obtener respuesta", error);
+        });
+    });
+
+    // Limpiar el área de mensaje
+    message.value = "";
+  });
+  return chatG;
 };
 
 export default ChatGrupal;
