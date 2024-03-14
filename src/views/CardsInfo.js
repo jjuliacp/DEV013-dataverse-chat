@@ -67,14 +67,16 @@ const CardsInfo = (card) => {
     const carta = data.find((x) => x.id === card.id);
     communicateWithOpenAI(message.value, carta) // funcion asicronica
       .then((response) => {
-        try {
           if (!apiKey) {
             alert("Por favor, ingresa tu API antes de chatear.");
             /* messageReceived.style.display = "none"; */
             // messageError.innerHTML += `<p>${response.error.message}</p>`
             return (window.location = "/apikey");
             //  return  messageError;
-          } else {
+          } else if (response.error && response.error.code === "invalid_api_key") {
+          messageError.innerHTML += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
+
+        } else {
             /* messageReceived.style.display = "block"; */
             /* received.innerHTML = response.choices[0].message.content; */
             //console.log(received);
@@ -111,13 +113,6 @@ const CardsInfo = (card) => {
             // Ajustar el scroll al final del historial
             chatHistoryContainer.scrollTop = chatHistoryContainer.scrollHeight;
           }
-        } catch (error) {
-          // definir dependiendo el codigo de errror
-          messageError.innerHTML +=
-            "<p>Apikey mal ingresada o inválida. Intenta de nuevo o pide una nueva apikey</p>";
-          //console.log(messageError);
-          // console.error('error al obtener', error)
-        }
       })
       .catch((error) => {
         console.error("error al obtener la respuesta", error);

@@ -19,12 +19,10 @@ const ChatGrupal = () => {
         </div>
         <div id="chatG-historial" class="chatG-historial">
 
-          <div id="output" ></div>
+          <div id="output" class="response" ></div>        
           <div id="received" class="received-conteiner"></div>
-          
-
+          <p id="messageError"></p>
         </div>
-        <p id="messageError"></p>
         <div class="window-chat">
           <textarea name="message-send" id="message-send" placeholder="type your message"> </textarea>
           <button class="containerSend GrupalSend">    
@@ -101,7 +99,7 @@ const ChatGrupal = () => {
     // const received = chatGrupalText.querySelector("#received"); //mensaje de IA
     // const output = chatGrupalText.querySelector("#output"); //contenedor de mensaje en historial
 
-    const messageError = chatGrupalText.querySelector("#messageError");
+    const errormessage = chatGrupalText.querySelector("#messageError");
     const apiKey = getApiKey();
     if (!message.value) return;
     const output = document.createElement("div");
@@ -158,15 +156,15 @@ const ChatGrupal = () => {
             // console.error('error al obtener', error)
           }
         })
-        .catch((error) => {
-          console.error("error al obtener respuesta", error);
-        });
-    });
-
-    // Limpiar el área de mensaje
-    message.value = "";
+      .catch((error) => {
+        console.error("error al obtener respuesta", error);
+      });
   });
-  return chatG;
+
+  // Limpiar el área de mensaje
+  message.value = "";
+});
+return chatG;
 };
 
 export default ChatGrupal;
