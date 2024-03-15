@@ -160,7 +160,7 @@ Ingresar la clave de API Key para poder chatear.
 
 ### 5. Diseño de la Interfaz de Usuaria
 
-#####Prototipo de baja fidelidad:
+***Prototipo de baja fidelidad*** :
 
 ![Image20240208133838](https://github.com/Elisantib/DEV013-text-analyzer/assets/142262726/01459057-0db1-4bf9-b2a7-cbc8978a1401)
 
@@ -168,7 +168,7 @@ Ingresar la clave de API Key para poder chatear.
 
 ![Image20240208133932](https://github.com/Elisantib/DEV013-text-analyzer/assets/142262726/b08c3522-350c-4679-8f92-076fcd34bfad)
 
-#####Prototipo de alta fidelidad:
+***Prototipo de alta fidelidad*** :
 
 ![home1](https://github.com/Elisantib/DEV013-text-analyzer/assets/142262726/8042cf55-3fad-4149-81f7-8cd2bea03113)
 ![Home2](https://github.com/Elisantib/DEV013-text-analyzer/assets/142262726/fe884250-1a1c-4523-aea1-9b8ef3f72b90)
