@@ -1,5 +1,3 @@
-/* import { Footer } from "../src/Components/Footer.js";.*/
-/* import { navBar } from "../src/components/Navbar.js"; */
 import Home from "../src/views/Home.js";
 
 const home = Home();
