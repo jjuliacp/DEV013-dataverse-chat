@@ -236,6 +236,10 @@ Se generaron los datos con la temática de Cartas Clow del anime de Sakura Card 
 
 ## 8. Producto Final
 
+**_Versión de escritorio_** :
+
+![escritorio](src/img/gif-escritorio2.gif)
+
 **_Versión de mobile_** :
 
 ![mobile](src/img/gif-mobile.gif)
