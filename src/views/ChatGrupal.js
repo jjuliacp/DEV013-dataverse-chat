@@ -42,7 +42,8 @@ const ChatGrupal = () => {
   const chatGrupalContact = document.createElement("div");
   chatGrupalContact.className = "list-contact-ChGr";
 
-  data.forEach((carta) => { // para mostrar la lista de personajes
+  data.forEach((carta) => {
+    // para mostrar la lista de personajes
     const divData = document.createElement("div");
     divData.className = "chatGrList";
     divData.innerHTML = `   
@@ -92,7 +93,6 @@ const ChatGrupal = () => {
 
   const btnChat = chatGrupalText.querySelector(".send");
 
-
   btnChat.addEventListener("click", () => {
     const message = chatGrupalText.querySelector("#message-send"); //mensaje enviado de textarea
     const chatGHistorial = chatGrupalText.querySelector("#chatG-historial");
@@ -114,15 +114,16 @@ const ChatGrupal = () => {
     chatGHistorial.appendChild(output);
     let errorShown = false; // Variable para rastrear si ya se ha mostrado un mensaje de error
     // console.log(message);
+    if (!apiKey) {
+      alert("Por favor, ingresa tu API antes de chatear.");
+      return (window.location = "/apikey");
+    }
     data.forEach((carta) => {
       communicateWithOpenAI(message.value, carta)
         .then((response) => {
-
-          if (!apiKey) {
-            alert("Por favor, ingresa tu API antes de chatear.");
-            return (window.location = "/apikey");
-          } else if (response.error && response.error.code === "invalid_api_key") {
-            if (!errorShown) {  // Mostrar mensaje de error solo si no se ha mostrado antes
+          if (response.error && response.error.code === "invalid_api_key") {
+            if (!errorShown) {
+              // Mostrar mensaje de error solo si no se ha mostrado antes
               errormessage.innerHTML += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
               errorShown = true; // Actualizar la variable para indicar que se ha mostrado un mensaje de error
             }
@@ -151,7 +152,6 @@ const ChatGrupal = () => {
             // Ajustar el scroll al final del historial
             chatGHistorial.scrollTop = chatGHistorial.scrollHeight;
           }
-
         })
         .catch((error) => {
           console.error("error al obtener respuesta", error);

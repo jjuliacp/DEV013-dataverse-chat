@@ -58,9 +58,11 @@ const CardsInfo = (card) => {
         if (!apiKey) {
           alert("Por favor, ingresa tu API antes de chatear.");
           return (window.location = "/apikey");
-        } else if (response.error && response.error.code === "invalid_api_key") {
+        } else if (
+          response.error &&
+          response.error.code === "invalid_api_key"
+        ) {
           messageError.innerHTML += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
-
         } else {
           // Mi mensaje de usuario al historial
           const userMessage = document.createElement("div");
