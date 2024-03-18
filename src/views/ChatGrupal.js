@@ -43,6 +43,7 @@ const ChatGrupal = () => {
   chatGrupalContact.className = "list-contact-ChGr";
 
   data.forEach((carta) => {
+    // para mostrar la lista de personajes
     const divData = document.createElement("div");
     divData.className = "chatGrList";
     divData.innerHTML = `   
@@ -91,14 +92,10 @@ const ChatGrupal = () => {
   });
 
   const btnChat = chatGrupalText.querySelector(".send");
-  /* const chatGHistorial = chatGrupalText.querySelector("#chatG-historial"); */
 
   btnChat.addEventListener("click", () => {
     const message = chatGrupalText.querySelector("#message-send"); //mensaje enviado de textarea
     const chatGHistorial = chatGrupalText.querySelector("#chatG-historial");
-    // const received = chatGrupalText.querySelector("#received"); //mensaje de IA
-    // const output = chatGrupalText.querySelector("#output"); //contenedor de mensaje en historial
-
     const errormessage = chatGrupalText.querySelector("#messageError");
     const apiKey = getApiKey();
     if (!message.value) return;
@@ -115,18 +112,21 @@ const ChatGrupal = () => {
       </div>
       `;
     chatGHistorial.appendChild(output);
-    console.log(message);
+    let errorShown = false; // Variable para rastrear si ya se ha mostrado un mensaje de error
+    // console.log(message);
+    if (!apiKey) {
+      alert("Por favor, ingresa tu API antes de chatear.");
+      return (window.location = "/apikey");
+    }
     data.forEach((carta) => {
       communicateWithOpenAI(message.value, carta)
         .then((response) => {
-          if (!apiKey) {
-            alert("Por favor, ingresa tu API antes de chatear.");
-            return (window.location = "/apikey");
-          } else if (
-            response.error &&
-            response.error.code === "invalid_api_key"
-          ) {
-            errormessage.innerHTML += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
+          if (response.error && response.error.code === "invalid_api_key") {
+            if (!errorShown) {
+              // Mostrar mensaje de error solo si no se ha mostrado antes
+              errormessage.innerHTML += `<p>La API key no es válida. Revisa que hayas ingresado una clave válida. Error 401. Haz clic <a href="https://platform.openai.com/docs/guides/error-codes/error-codes" target="_blank">aquí</a> para obtener más información.</p>`;
+              errorShown = true; // Actualizar la variable para indicar que se ha mostrado un mensaje de error
+            }
           } else {
             // Añadir mensaje de la IA al historial
             const responseMessage = response.choices[0].message.content;
