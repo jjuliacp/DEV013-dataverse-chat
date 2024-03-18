@@ -236,16 +236,6 @@ Se generaron los datos con la temática de Cartas Clow del anime de Sakura Card 
 
 ## 8. Producto Final
 
-## 9. Prueba-borrar despues
+**_Versión de mobile_** :
 
-![1 Home](https://github.com/Elisantib/DEV013-text-analyzer/assets/142262726/bfb24a2b-4888-46e8-9a68-cd18216e5c8a)
-
-![2 Home](https://github.com/Elisantib/DEV013-text-analyzer/assets/142262726/8e75b041-c122-4606-8218-e820fcd2a5c7)
-
-![3 Home](https://github.com/Elisantib/DEV013-text-analyzer/assets/142262726/15626ae2-91f1-482e-99e1-c8cb7899a729)
-
-![4 Home](https://github.com/Elisantib/DEV013-text-analyzer/assets/142262726/8b1e1893-204f-49de-98cb-3cf074de6e02)
-
-![5 ChatGrupal](https://github.com/Elisantib/DEV013-text-analyzer/assets/142262726/1c1239cf-2828-4430-9101-2a681c31e968)
-
-![6 ApiKey](https://github.com/Elisantib/DEV013-text-analyzer/assets/142262726/555ba442-9245-4e05-a9f4-1bd285a53e17)
+![mobile](src/img/gif-mobile.gif)
